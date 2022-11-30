@@ -1,4 +1,4 @@
-package shop.enity;
+package shop.entity;
 
 public class Product {
     private static int autoID = 1;

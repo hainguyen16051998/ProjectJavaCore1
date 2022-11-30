@@ -1,20 +1,20 @@
-package shop.enity;
+package shop.entity;
 
 import shop.entity.Customer;
 
 import java.util.List;
 
 public class Shop {
-    private List<shop.enity.Product> products;
+    private List<shop.entity.Product> products;
     private List<shop.enity.Staff> staffs;
     private List<Customer> customers;
-    private List<shop.enity.Order> orders;
+    private List<shop.entity.Order> orders;
 
-    public List<shop.enity.Product> getProducts() {
+    public List<shop.entity.Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<shop.enity.Product> products) {
+    public void setProducts(List<shop.entity.Product> products) {
         this.products = products;
     }
 
@@ -34,11 +34,11 @@ public class Shop {
         this.customers = customers;
     }
 
-    public List<shop.enity.Order> getOrders() {
+    public List<shop.entity.Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<shop.enity.Order> orders) {
+    public void setOrders(List<shop.entity.Order> orders) {
         this.orders = orders;
     }
 }

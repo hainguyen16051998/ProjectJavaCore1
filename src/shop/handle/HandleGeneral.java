@@ -6,14 +6,14 @@ import shop.entity.Customer;
 import java.util.List;
 
 public class HandleGeneral {
-    public void showProducts(List<shop.enity.Product> products) {
-        for (shop.enity.Product product : products) {
+    public void showProducts(List<shop.entity.Product> products) {
+        for (shop.entity.Product product : products) {
             product.showInfo();
         }
     }
 
-    public void showOrder(List<shop.enity.Order> orders) {
-        for (shop.enity.Order order : orders) {
+    public void showOrder(List<shop.entity.Order> orders) {
+        for (shop.entity.Order order : orders) {
             order.showInfo();
         }
     }
