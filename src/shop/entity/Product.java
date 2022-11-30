@@ -53,6 +53,10 @@ public class Product {
         this.description = description;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void showInfo() {
         System.out.println();
     }

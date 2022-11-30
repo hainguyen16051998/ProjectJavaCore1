@@ -29,6 +29,8 @@ public class Customer extends User {
     @Override
     public void inputInfo(Scanner scanner) {
         super.inputInfo(scanner);
+        System.out.println("Nhập số dư khả dụng:");
+
     }
 
     public double getBalance() {
@@ -48,5 +50,6 @@ public class Customer extends User {
     }
 
     public void showInfo() {
+        System.out.println();
     }
 }
