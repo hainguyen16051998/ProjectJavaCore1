@@ -4,6 +4,7 @@ package shop.handle;
 import shop.entity.Customer;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class HandleGeneral {
     public void showProducts(List<shop.entity.Product> products) {
@@ -18,7 +19,7 @@ public class HandleGeneral {
         }
     }
 
-    public void eidtCustomer(Customer customer) {
+    public void editCustomer(Customer customer, Scanner scanner) {
         customer.showInfo();
         System.out.println();
     }
