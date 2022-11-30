@@ -11,12 +11,13 @@ public class menuStaff {
 
     // hiện thị chức năng được chọn
     public void showMenu(Scanner scanner, Shop shop, shop.enity.Staff staff) {
-        while (true){
+        while (true) {
             System.out.println("Xin mời chọn chức năng: ");
-            System.out.println("1. Xem thông tin tất cả sản phẩm trong cửa hàng ");
-            System.out.println("2. Xem thông tin tất cả đơn hàng ");
-            System.out.println("3. Chỉnh sửa thông tin đơn hàng ");
-            System.out.println("4. Xem và chỉnh sửa thông tin khách hàng ");
+            System.out.println("1. Xem danh sách sản phẩm");
+            System.out.println("2. Chỉnh sửa thông tin sản phẩm");
+            System.out.println("3. Thêm sản phẩm ");
+            System.out.println("4. Xóa sản phẩm ");
+            System.out.println("5. Xem danh sách đơn hàng ");
             System.out.println("0. Đăng xuất ");
             chooseFunction(scanner, shop, staff);
         }
@@ -29,7 +30,7 @@ public class menuStaff {
         while (true) {
             try {
                 choice = Integer.parseInt(scanner.nextLine());
-                if (choice < 0 || choice > 4) {
+                if (choice < 0 || choice > 5) {
                     throw new Exception();
                 }
                 break;
@@ -43,13 +44,16 @@ public class menuStaff {
                 handleStaff.showProducts(shop.getProducts());
                 break;
             case 2:
-                handleStaff.showOrder(shop.getOrders());
+                handleStaff.editProduct(scanner, shop.getProducts());
                 break;
             case 3:
-                handleStaff.eidtOrder(shop.getOrders(),scanner);
+                handleStaff.addProduct(scanner, shop.getProducts());
                 break;
             case 4:
-                handleStaff.editCustomer(shop.getCustomers(),scanner);
+                handleStaff.removeProduct(scanner, shop.getProducts());
+                break;
+            case 5:
+                handleStaff.showOrder(shop.getOrders());
                 break;
             case 0: // Quay lại  menu đăng nhập
                 return;

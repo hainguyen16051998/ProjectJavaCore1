@@ -1,5 +1,11 @@
+import shop.entity.Shop;
+
+import java.util.Scanner;
+
 public class MainRun {
     public static void main(String[] args) {
-        System.out.println("ạndgkansd");
+        Scanner scanner = new Scanner(System.in);
+        Shop shop = new Shop();
+
     }
 }

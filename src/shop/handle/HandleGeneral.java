@@ -1,26 +1,20 @@
 package shop.handle;
 
-
-import shop.entity.Customer;
+import shop.entity.Order;
+import shop.entity.Product;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class HandleGeneral {
-    public void showProducts(List<shop.entity.Product> products) {
-        for (shop.entity.Product product : products) {
+    public void showProducts(List<Product> products) {
+        for (Product product : products) {
             product.showInfo();
         }
     }
 
-    public void showOrder(List<shop.entity.Order> orders) {
-        for (shop.entity.Order order : orders) {
+    public void showOrder(List<Order> orders) {
+        for (Order order : orders) {
             order.showInfo();
         }
-    }
-
-    public void editCustomer(Customer customer, Scanner scanner) {
-        customer.showInfo();
-        System.out.println();
     }
 }

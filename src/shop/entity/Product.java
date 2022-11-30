@@ -1,5 +1,7 @@
 package shop.entity;
 
+import java.util.Scanner;
+
 public class Product {
     private static int autoID = 1;
     private int id;
@@ -59,5 +61,9 @@ public class Product {
 
     public void showInfo() {
         System.out.println();
+    }
+
+    public void inputInfo(Scanner scanner) {
+
     }
 }
