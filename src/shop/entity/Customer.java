@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Customer extends User {
     private double balance;
-    private List<shop.enity.Order> orders;
+    private List<shop.entity.Order> orders;
 
     public Customer() {
 
@@ -39,11 +39,11 @@ public class Customer extends User {
         this.balance = balance;
     }
 
-    public List<shop.enity.Order> getOrders() {
+    public List<shop.entity.Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<shop.enity.Order> orders) {
+    public void setOrders(List<shop.entity.Order> orders) {
         this.orders = orders;
     }
 

@@ -1,7 +1,5 @@
 package shop.view;
 
-
-
 import shop.handle.HandleCustomer;
 
 import java.util.Scanner;
