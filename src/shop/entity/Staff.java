@@ -1,4 +1,4 @@
-package shop.enity;
+package shop.entity;
 
 import account.entity.User;
 
@@ -15,5 +15,7 @@ public class Staff extends User {
         super.inputInfo(scanner);
     }
 
-
+    public Staff() {
+        this.role = "staff";
+    }
 }

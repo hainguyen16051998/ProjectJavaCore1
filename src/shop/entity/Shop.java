@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Shop {
     private List<shop.entity.Product> products;
-    private List<shop.enity.Staff> staffs;
+    private List<shop.entity.Staff> staffs;
     private List<Customer> customers;
     private List<shop.entity.Order> orders;
 
@@ -18,11 +18,11 @@ public class Shop {
         this.products = products;
     }
 
-    public List<shop.enity.Staff> getStaffs() {
+    public List<shop.entity.Staff> getStaffs() {
         return staffs;
     }
 
-    public void setStaffs(List<shop.enity.Staff> staffs) {
+    public void setStaffs(List<shop.entity.Staff> staffs) {
         this.staffs = staffs;
     }
 

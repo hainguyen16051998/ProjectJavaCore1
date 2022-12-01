@@ -11,19 +11,12 @@ public class Customer extends User {
     private List<shop.entity.Order> orders;
 
     public Customer() {
-
+        this.role = "customer";                       // có nên tạo enum role ko nhỉ?
     }
 
     public Customer(String username, String name, String email, String address, String phone, String password, String role, double balance) {
         super(username, name, email, address, phone, password, role);
         this.balance = balance;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "balance=" + balance +
-                '}';
     }
 
     @Override
@@ -50,6 +43,7 @@ public class Customer extends User {
     }
 
     public void showInfo() {
-        System.out.println();
+        System.out.println("Mã tài khoản: " + this.id + ", Email: " + this.email);
+        System.out.println("Họ tên: " + this.name + ", địa chỉ" + this.address + ", SĐT: " + this.phone);
     }
 }
