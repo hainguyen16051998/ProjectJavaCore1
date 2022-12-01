@@ -5,7 +5,8 @@ public enum TypeStatus {
     OLD("Cũ");
 
     public String value;
-    TypeStatus (String value){
+
+    TypeStatus(String value) {
         this.value = value;
     }
 }

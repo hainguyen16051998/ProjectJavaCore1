@@ -1,27 +1,29 @@
 package shop.view;
 
-import shop.handle.HandleStaff;
+import shop.handle.HandleCustomer;
 
 import java.util.Scanner;
 
-public class menuStaff {
-    HandleStaff handleStaff = new HandleStaff();
+public class MenuCustomer {
+    HandleCustomer handleCustomer = new HandleCustomer();
 
-    // hiện thị chức năng được chọn
+    /// hiện thị chức năng được chọn
     public void showMenu(Scanner scanner) {
         while (true){
-            System.out.println("Xin mời chọn chức năng: ");
-            System.out.println("1. Xem thông tin tất cả sản phẩm trong cửa hàng ");
-            System.out.println("2. Xem thông tin tất cả đơn hàng ");
-            System.out.println("3. Chỉnh sửa thông tin đơn hàng ");
-            System.out.println("4. Xem và chỉnh sửa thông tin khách hàng ");
+            System.out.println("Xin mời chọn chức năng ");
+            System.out.println("1. Xem thông tin tất cả sản phẩm trong shop ");
+            System.out.println("2. Tạo đơn đặt hàng mới ");
+            System.out.println("3. Xem thông tin đơn hàng của bạn ");
+            System.out.println("4. Xem và chỉnh sửa thông tin cá nhân ");
             System.out.println("0. Đăng xuất ");
             chooseFunction(scanner);
         }
+
     }
 
-    //// chọn chức năng
+    //// Chọn chức năng
     public void chooseFunction(Scanner scanner) {
+
         System.out.print("Chọn chức năng: ");
         int choice;
         while (true) {
@@ -38,17 +40,17 @@ public class menuStaff {
 
         switch (choice) {
             case 1:
-//                handleStaff.showProducts();
+//                handleCustomer.showProducts();
                 break;
             case 2:
-//                handleStaff.showOrder();
+                handleCustomer.addOrder();
                 break;
             case 3:
-//                handleStaff.eidtOrder();
+//                handleCustomer.showOrder();
                 break;
             case 4:
-//                handleStaff.eidtCustomer();
-//                break;
+//                handleCustomer.eidtCustomer();
+                break;
             case 0: // Quay lại  menu đăng nhập
                 return;
         }

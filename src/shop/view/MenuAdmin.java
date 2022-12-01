@@ -2,7 +2,7 @@ package shop.view;
 
 import java.util.Scanner;
 
-public class menuAdmin {
+public class MenuAdmin {
     public void showMenu() {
         System.out.println("---------------------------------------");
 

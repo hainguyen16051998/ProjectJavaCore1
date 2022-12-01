@@ -1,4 +1,4 @@
-package shop.enity;
+package shop.entity;
 
 import account.entity.User;
 
