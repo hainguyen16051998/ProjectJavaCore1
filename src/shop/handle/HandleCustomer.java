@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class HandleCustomer extends HandleGeneral {
 
     public void addOrder(Scanner scanner, Customer customer, Shop shop) {
-        Order order = new Order();
+        Order order = new Order(customer);
         order.inputInfo(scanner, shop.getProducts(), customer);
         customer.getOrders().add(order);
         shop.getOrders().add(order);

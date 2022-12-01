@@ -74,31 +74,56 @@ public class Product {
                 '}';
     }
 
-    public void showInfo(){
-        System.out.println("Mã mặt hàng: "+this.id);
-        System.out.println("Tên mặt hàng: "+this.name +", Trạng thái: "+this.status);
-        System.out.println("Số lượng: "+this.quantity + ", Giá: "+this.price);
-        System.out.println("Miêu tả sản phẩm: "+this.description);
+    public void showInfo() {
+        System.out.println("Mã mặt hàng: " + this.id);
+        System.out.println("Tên mặt hàng: " + this.name + ", Trạng thái: " + this.status);
+        System.out.println("Số lượng: " + this.quantity + ", Giá: " + this.price);
+        System.out.println("Miêu tả sản phẩm: " + this.description);
     }
 
 
     public void inputInfo(Scanner scanner) {
         System.out.println("Nhập tên mặt hàng: ");
         this.name = scanner.nextLine();
-        System.out.println("Nhập trạng thái: 1.Mới 2. Cũ  ");
-        int statusChoice = Integer.parseInt(scanner.nextLine());
-        while (statusChoice <1 || statusChoice >2){
-            System.out.println("Vui lòng chọn lại: ");                      //bổ sung try catch sau
-            statusChoice = Integer.parseInt(scanner.nextLine());
+        System.out.print("Nhập trạng thái (1.Mới - 2.Cũ):  ");
+        choseStatus(scanner);
+        System.out.println("Nhập số lượng hàng: ");
+        this.quantity = returnInt(scanner);
+        System.out.println("Nhập miêu tả sản phẩm: ");
+        this.description = scanner.nextLine();
+    }
+
+    // chọn trạng thái cũ hay mới
+    public void choseStatus(Scanner scanner) {
+        int statusChoice;
+        while (true) {
+            statusChoice = returnInt(scanner);
+            if (statusChoice == 1 || statusChoice == 2) {
+                break;
+            }
+            System.out.print("Vui lòng chọn lại: ");
         }
-        if (statusChoice ==1) {
+        if (statusChoice == 1) {
             this.status = TypeStatus.NEW.value;
         } else {
             this.status = TypeStatus.OLD.value;
         }
-        System.out.println("Nhập số lượng hàng: ");
-        this.quantity = Integer.parseInt(scanner.nextLine());
-        System.out.println("Nhập miêu tả sản phẩm: ");
-        this.description = scanner.nextLine();
+    }
+
+    //trả về số nguyên
+    public int returnInt(Scanner scanner) {
+        int n;
+        while (true) {
+            try {
+                n = Integer.parseInt(scanner.nextLine());
+                if (n < 1) {
+                    throw new Exception();
+                }
+                break;
+            } catch (Exception e) {
+                System.out.print("Vui lòng nhập lại: ");
+            }
+        }
+        return n;
     }
 }

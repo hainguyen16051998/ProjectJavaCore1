@@ -51,7 +51,6 @@ public class HandleAccount {
                     if (user.getPassword().equals(password)) {
                         //nhập đúng cả password
                         // check role
-//                        menu.viewFunction(scanner, users, User);
                         checkRole(scanner, users, user);
                     } else {
                         //sai pass
@@ -73,8 +72,7 @@ public class HandleAccount {
             menuAdmin.showMenu();
         } else if (user.getRole().equals("customer")) {
             MenuCustomer menuCustomer = new MenuCustomer();
-
-            menuCustomer.showMenu(scanner, shop,user);
+            menuCustomer.showMenu(scanner, shop, user);
         } else if (user.getRole().equals("staff")) {
 
         } else if (user.getRole().equals("teacher")) {
