@@ -1,6 +1,6 @@
 package shop.view;
 
-import shop.enity.Staff;
+import shop.entity.Staff;
 import shop.entity.Shop;
 import shop.handle.HandleStaff;
 
@@ -10,7 +10,7 @@ public class MenuStaff {
     HandleStaff handleStaff = new HandleStaff();
 
     // hiện thị chức năng được chọn
-    public void showMenu(Scanner scanner, Shop shop, shop.enity.Staff staff) {
+    public void showMenu(Scanner scanner, Shop shop, shop.entity.Staff staff) {
         while (true) {
             System.out.println("Xin mời chọn chức năng: ");
             System.out.println("1. Xem danh sách sản phẩm");
