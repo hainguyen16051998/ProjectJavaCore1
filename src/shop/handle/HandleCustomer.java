@@ -22,7 +22,7 @@ public class HandleCustomer extends HandleGeneral {
         System.out.println("Thay đổi thông tin");
         System.out.print("Họ tên: ");
         customer.setName(scanner.nextLine());
-        System.out.print("Đại chị: ");
+        System.out.print("Địa chỉ: ");
         customer.setAddress(scanner.nextLine());
         System.out.print("SĐT: ");
         customer.setPhone(scanner.nextLine());

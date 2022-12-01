@@ -1,5 +1,8 @@
 package shop.entity;
 
+import account.constant.TypeRole;
+import shop.constant.TypeStatus;
+
 import java.util.Scanner;
 
 public class Product {
@@ -63,7 +66,36 @@ public class Product {
         System.out.println();
     }
 
-    public void inputInfo(Scanner scanner) {
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
+    public void inputInfo(Scanner scanner) {
+        System.out.println("Nhập tên mặt hàng: ");
+        this.name = scanner.nextLine();
+        System.out.println("Nhập trạng thái: 1.Mới 2. Cũ  ");
+        int statusChoice = Integer.parseInt(scanner.nextLine());
+        while (statusChoice <1 || statusChoice >2){
+            System.out.println("Vui lòng chọn lại: ");                      //bổ sung try catch sau
+            statusChoice = Integer.parseInt(scanner.nextLine());
+        }
+        if (statusChoice ==1) {
+            this.status = TypeStatus.NEW.value;
+        } else {
+            this.status = TypeStatus.OLD.value;
+        }
+        System.out.println("Nhập số lượng hàng: ");
+        this.quantity = Integer.parseInt(scanner.nextLine());
+        System.out.println("Nhập miêu tả sản phẩm: ");
+        this.description = scanner.nextLine();
     }
 }
