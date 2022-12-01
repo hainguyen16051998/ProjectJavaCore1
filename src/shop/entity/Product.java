@@ -62,11 +62,6 @@ public class Product {
         return id;
     }
 
-    public void showInfo() {
-        System.out.println();
-    }
-
-
     @Override
     public String toString() {
         return "Product{" +
@@ -78,6 +73,14 @@ public class Product {
                 ", description='" + description + '\'' +
                 '}';
     }
+
+    public void showInfo(){
+        System.out.println("Mã mặt hàng: "+this.id);
+        System.out.println("Tên mặt hàng: "+this.name +", Trạng thái: "+this.status);
+        System.out.println("Số lượng: "+this.quantity + ", Giá: "+this.price);
+        System.out.println("Miêu tả sản phẩm: "+this.description);
+    }
+
 
     public void inputInfo(Scanner scanner) {
         System.out.println("Nhập tên mặt hàng: ");

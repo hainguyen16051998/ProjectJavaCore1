@@ -1,7 +1,9 @@
 package shop.constant;
 
 public enum RoleConstant {
-    Cutstomer("Cutstomer");
+    CUSTOMER("Customer"),
+    STAFF("Staff");
+
 
     public String value;
 

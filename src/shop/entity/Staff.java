@@ -1,6 +1,7 @@
 package shop.entity;
 
 import account.entity.User;
+import shop.constant.RoleConstant;
 
 import java.util.Scanner;
 
@@ -16,6 +17,6 @@ public class Staff extends User {
     }
 
     public Staff() {
-        this.role = "staff";
+        this.role = RoleConstant.STAFF.value;
     }
 }
