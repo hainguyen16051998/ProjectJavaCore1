@@ -11,7 +11,6 @@ public class Customer extends User {
     private List<shop.entity.Order> orders;
 
     public Customer() {
-        this.role = "customer";                       // có nên tạo enum role ko nhỉ?
     }
 
     public Customer(String username, String name, String email, String address, String phone, String password, String role, double balance) {

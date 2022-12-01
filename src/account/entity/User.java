@@ -125,7 +125,7 @@ public class User extends ArrayList<User> {
         checkPassword(scanner);
         System.out.print("Mời nhập email: ");
         checkEmail(scanner, users);
-        this.role = RoleConstant.Cutstomer.value;
+        this.role = RoleConstant.CUSTOMER.value;
     }
 
 
