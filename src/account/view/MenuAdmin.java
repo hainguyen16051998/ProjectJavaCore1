@@ -1,4 +1,4 @@
-package shop.view;
+package account.view;
 
 import java.util.Scanner;
 
