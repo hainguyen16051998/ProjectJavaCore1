@@ -6,7 +6,7 @@ import shop.handle.HandleStaff;
 
 import java.util.Scanner;
 
-public class menuStaff {
+public class MenuStaff {
     HandleStaff handleStaff = new HandleStaff();
 
     // hiện thị chức năng được chọn

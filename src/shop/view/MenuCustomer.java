@@ -6,7 +6,7 @@ import shop.handle.HandleCustomer;
 
 import java.util.Scanner;
 
-public class menuCustomer {
+public class MenuCustomer {
     HandleCustomer handleCustomer = new HandleCustomer();
 
     /// hiện thị chức năng được chọn
