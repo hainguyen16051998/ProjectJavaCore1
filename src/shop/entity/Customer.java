@@ -10,7 +10,11 @@ public class Customer extends User {
     private double balance;
     private List<shop.entity.Order> orders;
 
-//    public Customer() {
+    public Customer(String username, String name, String email, String password) {
+        super(username, name, email, password);
+    }
+
+    //    public Customer() {
 //        this.role = "customer";                       // có nên tạo enum role ko nhỉ?
 //    }
 //

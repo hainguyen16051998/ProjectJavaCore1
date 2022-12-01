@@ -3,12 +3,14 @@ package account.view;
 
 import account.entity.User;
 import account.handle.HandleAccount;
+import shop.entity.Shop;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    HandleAccount handleAccount;
+    private HandleAccount handleAccount;
+    private Shop shop;
 
     public HandleAccount getHandleAccount() {
         return handleAccount;
@@ -16,6 +18,10 @@ public class Menu {
 
     public void setHandleAccount(HandleAccount handleAccount) {
         this.handleAccount = handleAccount;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
     public void mainMenu(Scanner scanner, List<User> users) {

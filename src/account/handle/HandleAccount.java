@@ -3,7 +3,10 @@ package account.handle;
 
 import account.entity.User;
 import account.view.Menu;
+import account.view.MenuAdmin;
 import shop.entity.Customer;
+import shop.entity.Shop;
+import shop.view.MenuCustomer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +14,14 @@ import java.util.Scanner;
 
 public class HandleAccount {
     Menu menu;
+    Shop shop;
 
-    public HandleAccount(Menu menu) {
+    public HandleAccount(Menu menu, Shop shop) {
         this.menu = menu;
+        this.shop = shop;
     }
-//    // Kiểm tra trùng SĐT vs hệ thống
+
+    //    // Kiểm tra trùng SĐT vs hệ thống
 //    private void checkPhone(Scanner scanner) {             // Lỗi so sánh
 //        ArrayList<User> users = new ArrayList<>();
 //        String phone = scanner.nextLine();
@@ -38,16 +44,18 @@ public class HandleAccount {
             System.out.print("Password: ");
             String password = scanner.nextLine();
             boolean check = false;
-            for (User User : users) {
-                if (User.getUsername().equals(name)) {
+            for (User user : users) {
+                if (user.getUsername().equals(name)) {
                     // nhập đúng username
                     check = true;
-                    if (User.getPassword().equals(password)) {
+                    if (user.getPassword().equals(password)) {
                         //nhập đúng cả password
-                        menu.viewFunction(scanner, users, User);
+                        // check role
+//                        menu.viewFunction(scanner, users, User);
+                        checkRole(scanner, users, user);
                     } else {
                         //sai pass
-                        menu.viewLogin(scanner, users, User);
+                        menu.viewLogin(scanner, users, user);
                     }
                 }
             }
@@ -55,6 +63,24 @@ public class HandleAccount {
                 break;
             }
             System.out.println("Kiểm tra lại username!");
+        }
+    }
+
+    /// check role
+    public void checkRole(Scanner scanner, List<User> users, User user) {
+        if (user.getRole().equals("admin")) {
+            MenuAdmin menuAdmin = new MenuAdmin();
+            menuAdmin.showMenu();
+        } else if (user.getRole().equals("customer")) {
+            MenuCustomer menuCustomer = new MenuCustomer();
+
+            menuCustomer.showMenu(scanner, shop,user);
+        } else if (user.getRole().equals("staff")) {
+
+        } else if (user.getRole().equals("teacher")) {
+
+        } else {
+
         }
     }
 
