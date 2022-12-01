@@ -4,6 +4,7 @@ import account.entity.User;
 import shop.view.MenuAdmin;
 import shop.view.MenuCustomer;
 import shop.view.MenuStaff;
+import shop.entity.Shop;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,7 +18,7 @@ public class Menu {
         System.out.println("2. Đăng ký khách hàng");
         System.out.println("0. Thoát");
         System.out.print("Mời bạn chọn: ");
-        int choice ;
+        int choice;
         do {
             try {
                 choice = Integer.parseInt(scanner.nextLine());
@@ -41,21 +42,21 @@ public class Menu {
         }
     }
 
-    private void login(Scanner scanner, ArrayList<User> users) {
-        System.out.print("Mời nhập username: ");
-        String username = scanner.nextLine();
-        boolean check = false;
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                check = true;
-            }
-            if (!check) {
-                System.out.println("Username không tồn tại, nhập lại: ");
-                login(scanner, users);
-            }
-
-        }
-    }
+//    private void login(Scanner scanner, ArrayList<User> users) {
+//        System.out.print("Mời nhập username: ");
+//        String username = scanner.nextLine();
+//        boolean check = false;
+//        for (User user : users) {
+//            if (user.getUsername().equals(username)) {
+//                check = true;
+//            }
+//            if (!check) {
+//                System.out.println("Username không tồn tại, nhập lại: ");
+//                login(scanner, users);
+//            }
+//
+//        }
+//    }
 
     private void registerCutsomer(Scanner scanner, ArrayList<User> users) {
         User user = new User();
@@ -65,38 +66,38 @@ public class Menu {
         displayMenu(scanner, users);
     }
 
-//    public void login(Scanner scanner, ArrayList<User> users) {
-//        System.out.print("Mời nhập username: ");
-//        String username = scanner.nextLine();
-//        boolean check = false;
-//        for (User user : users) {
-//            if (user.getUsername().equals(username)) {
-//                check = true;
-//                System.out.print("Mời nhập passwword: ");
-//                String passwword = scanner.nextLine();
-//                if (user.getPassword().equals(passwword)) {
-//                    if (user.getRole().equals("Admin")) {
-//                        MenuAdmin admin = new MenuAdmin();
-//                        admin.showMenu();
-//                    } else if (user.getRole().equals("Staff")) {
-//                        MenuStaff staff = new MenuStaff();
-//                        staff.showMenu(scanner);
-//                    } else if (user.getRole().equals("Customer")) {
-//                        MenuCustomer customer = new MenuCustomer();
-//                        customer.showMenu(scanner);
-//                    }
-//                } else {
-//                    relogin(scanner, users);
-//                    break;
-//                }
-//            }
-//            if (!check) {
-//                System.out.println("Username không tồn tại, nhập lại: ");
-//                login(scanner, users);
-//            }
-//        }
-//    }
+    public void login(Scanner scanner, ArrayList<User> users) {
 
+        System.out.print("Mời nhập username: ");
+        String username = scanner.nextLine();
+        boolean check = false;
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                check = true;
+                System.out.print("Mời nhập passwword: ");
+                String passwword = scanner.nextLine();
+                if (user.getPassword().equals(passwword)) {
+                    if (user.getRole().equals("Admin")) {
+                        MenuAdmin admin = new MenuAdmin();
+                        admin.showMenu();
+                    } else if (user.getRole().equals("Staff")) {
+                        MenuStaff staff = new MenuStaff();
+//                        staff.showMenu(scanner, shop, staff);
+                    } else if (user.getRole().equals("Customer")) {
+                        MenuCustomer customer = new MenuCustomer();
+//                        customer.showMenu(scanner, shop, customer);
+                    }
+                } else {
+                    relogin(scanner, users);
+                    break;
+                }
+            }
+            if (!check) {
+                System.out.println("Username không tồn tại, nhập lại: ");
+                login(scanner, users);
+            }
+        }
+    }
 
 
     public void relogin(Scanner scanner, ArrayList<User> users) {

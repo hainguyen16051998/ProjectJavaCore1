@@ -130,7 +130,8 @@ public class User extends ArrayList<User> {
 
 
     // Kiểm tra trùng EMAIL vs hệ thống
-    private void checkEmail(Scanner scanner, User users) {        // Lỗi so sánh
+    private void checkEmail(Scanner scanner, ArrayList<User> users) {        // Lỗi so sánh
+        System.out.println(users);
         String email;
         String regex = "^[a-zA-Z0-9\\.]+@[a-zA-Z]+(\\.[a-zA-Z]+)$";
         while (true) {
@@ -142,7 +143,7 @@ public class User extends ArrayList<User> {
         }
         for (User user : users) {
             if (!email.equals(user.getUsername())) {
-                this.email = email;
+                setEmail(email);
                 break;
             } else {
                 System.out.print("Email này đã được sử dụng, vui lòng tạo Email khác ");
@@ -158,7 +159,7 @@ public class User extends ArrayList<User> {
         while (true) {
             password = scanner.nextLine();
             if (password.matches(regex)) {
-                this.password = password;
+                setPassword(password);
                 break;
             } else
                 System.out.println("Không đúng định dạng! Password dài từ 7 đến 15 ký tự, chứa ít nhất 1 ký tự in hoa, 1 ký tự đặc biệt, Nhập lại ");
@@ -173,7 +174,7 @@ public class User extends ArrayList<User> {
         String username = scanner.nextLine();
         for (User user : users) {
             if (!username.equals(user.getUsername())) {
-                this.username = username;
+                setUsername(username);
                 break;
             } else {
                 System.out.print("Username này đã được sử dụng, vui lòng tạo Username khác ");
