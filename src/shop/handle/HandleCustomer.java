@@ -1,5 +1,7 @@
 package shop.handle;
 
+import account.entity.User;
+import account.handle.HandleAccount;
 import shop.entity.Customer;
 import shop.entity.Order;
 import shop.entity.Shop;
@@ -7,29 +9,32 @@ import shop.entity.Shop;
 import java.util.List;
 import java.util.Scanner;
 
-public class HandleCustomer extends HandleGeneral {
+public class HandleCustomer implements IHandle{
 
-    public void addOrder(Scanner scanner, Customer customer, Shop shop) {
+    public void addOrder(Scanner scanner, Customer customer, Shop shop) throws NullPointerException {
         Order order = new Order(customer);
-        order.inputInfo(scanner, shop.getProducts(), customer);
-        customer.getOrders().add(order);
-        shop.getOrders().add(order);
+        order.inputInfo(scanner, shop.getProducts());
+        if (order.getTotal()>0) {
+            customer.getOrders().add(order);
+            shop.getOrders().add(order);
+        }
     }
 
 
-    public void editCustomer(Customer customer, Scanner scanner) {
+    public void editCustomer(List<User> users,Customer customer, Scanner scanner){
+        HandleAccount handleAccount = new HandleAccount();
         customer.showInfo();
         System.out.println("Thay đổi thông tin");
         System.out.print("Họ tên: ");
         customer.setName(scanner.nextLine());
         System.out.print("Địa chỉ: ");
         customer.setAddress(scanner.nextLine());
-        System.out.print("SĐT: ");
+        System.out.print("SĐT: ");/// check
         customer.setPhone(scanner.nextLine());
         System.out.print("Email: ");
-        customer.setEmail(scanner.nextLine());
+        handleAccount.changeEmail(scanner,users,customer);
         System.out.print("Password: ");
-        customer.setPassword(scanner.nextLine());
+        handleAccount.changePassword(scanner,customer);
 
     }
 }

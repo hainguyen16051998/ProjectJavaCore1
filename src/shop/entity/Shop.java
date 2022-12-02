@@ -2,13 +2,14 @@ package shop.entity;
 
 import shop.entity.Customer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
     private List<Product> products;
     private List<Staff> staffs;
     private List<Customer> customers;
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<>();
 
 
     public List<Product> getProducts() {

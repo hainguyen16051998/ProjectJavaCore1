@@ -6,7 +6,7 @@ import shop.entity.Product;
 import java.util.List;
 import java.util.Scanner;
 
-public class HandleStaff extends HandleGeneral {
+public class HandleStaff implements IHandle {
 
 
     public void eidtOrder(List<Order> orders, Scanner scanner) {
@@ -26,35 +26,21 @@ public class HandleStaff extends HandleGeneral {
     public void editProduct(Scanner scanner, List<Product> products) {
         System.out.print("Tìm kiếm mã sản phẩm: ");
         int id = returnInt(scanner);
-        boolean check = true;
+        boolean check = false;
         for (Product product : products) {
             if (product.getId() == id) {
-                check = false;
-
+                check = true;
+                product.inputInfo(scanner);
                 ////chưa viết sửa thông tin
                 ///
                 ///
             }
         }
-        if (check) {
+        if (!check) {
             System.out.println("Không tìm thấy!");
         }
     }
 
-    public int returnInt(Scanner scanner) {
-        int id = 0;
-        while (true) {
-            try {
-                id = Integer.parseInt(scanner.nextLine());
-                if (id > 0) {
-                    break;
-                }
-            } catch (Exception e) {
-                System.out.print("Vui lòng nhập lại: ");
-            }
-        }
-        return id;
-    }
 
     public void addProduct(Scanner scanner, List<Product> products) {
         System.out.print("Nhập số sản phẩm muốn thêm: ");
@@ -75,6 +61,7 @@ public class HandleStaff extends HandleGeneral {
                 check = false;
                 products.remove(product);
                 System.out.println("Đã xóa!");
+                break;
             }
         }
         if (check) {

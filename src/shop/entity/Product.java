@@ -2,10 +2,11 @@ package shop.entity;
 
 import account.constant.TypeRole;
 import shop.constant.TypeStatus;
+import shop.handle.IHandle;
 
 import java.util.Scanner;
 
-public class Product {
+public class Product implements IHandle {
     private static int autoID = 1;
     private int id;
     private String name;
@@ -16,6 +17,15 @@ public class Product {
 
     public Product() {
         this.id = autoID++;
+    }
+
+    public Product(String name, String status, int quantity, double price, String description) {
+        this.id = autoID++;
+        this.name = name;
+        this.status = status;
+        this.quantity = quantity;
+        this.price = price;
+        this.description = description;
     }
 
     public String getName() {
@@ -87,6 +97,8 @@ public class Product {
         this.name = scanner.nextLine();
         System.out.print("Nhập trạng thái (1.Mới - 2.Cũ):  ");
         choseStatus(scanner);
+        System.out.print("Nhập đơn giá: ");
+        inputPrice(scanner);
         System.out.println("Nhập số lượng hàng: ");
         this.quantity = returnInt(scanner);
         System.out.println("Nhập miêu tả sản phẩm: ");
@@ -110,20 +122,19 @@ public class Product {
         }
     }
 
-    //trả về số nguyên
-    public int returnInt(Scanner scanner) {
-        int n;
+    public void inputPrice(Scanner scanner) {
+
         while (true) {
             try {
-                n = Integer.parseInt(scanner.nextLine());
-                if (n < 1) {
+                this.price = Double.parseDouble(scanner.nextLine());
+                if (this.price <= 0) {
                     throw new Exception();
                 }
                 break;
             } catch (Exception e) {
-                System.out.print("Vui lòng nhập lại: ");
+                System.out.print("Vui lòng chọn lại: ");
             }
         }
-        return n;
+
     }
 }

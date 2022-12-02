@@ -1,14 +1,13 @@
 package shop.entity;
 
 
+import shop.handle.IHandle;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
-public class Order {
+public class Order implements IHandle {
     private static int autoID = 1;
     private int id;
     private LocalDateTime orderTime;
@@ -26,11 +25,11 @@ public class Order {
         return id;
     }
 
-    public Date getOrderTime() {
+    public LocalDateTime getOrderTime() {
         return orderTime;
     }
 
-    public void setOrderTime(Date orderTime) {
+    public void setOrderTime(LocalDateTime orderTime) {
         this.orderTime = orderTime;
     }
 
@@ -59,16 +58,22 @@ public class Order {
     }
 
     public void showInfo() {
+        System.out.println("---------------------- Đơn hàng-----------------------------");
         System.out.println("Đơn đặt hàng mã số " + this.id + ", được khởi tạo lúc " + this.orderTime);
         System.out.println("Trạng thái đơn hàng: " + this.status);
         System.out.println("Tên khách hàng: " + this.customer.getName());
-        System.out.println("Tổng tiền thanh toán: " + this.total);
         //// show Map<Integer, Integer> products ??
+        System.out.println("Số lượng sản phẩm: ");
+        for (Map.Entry<Integer, Integer> entry : products.entrySet()){
+            System.out.println("\t\tMã: "+entry.getKey()+" - Số lượng: "+entry.getValue());
+        }
+        System.out.println("Tổng tiền thanh toán: " + this.total);
     }
 
 
-    public void inputInfo(Scanner scanner, List<Product> products, Customer customer) {
+    public void inputInfo(Scanner scanner, List<Product> products) {
         double total = 0;// tổng tiền thanh toán
+        Map<Integer, Integer> map = new HashMap<>();
         while (true) {
             int productId;
             System.out.print("Nhập id mặt hàng muốn mua: ");
@@ -79,7 +84,7 @@ public class Order {
                 if (productId == p.getId()) {
                     findID = true;
                     if (p.getQuantity() > 0) {
-                        total += checkQuatity(scanner, p);////chọn số lượng mua
+                        total += checkQuatity(scanner, p, map);////chọn số lượng mua
                         break;
                     } else {
                         System.out.println("Mặt hàng đã hết!");
@@ -91,30 +96,19 @@ public class Order {
                 System.out.print("Không tìm thấy sản phẩm!");
                 break;
             }
-            buyMore(scanner, total);// có muốn mua thêm sản phâm không
+            if (buyMore(scanner)) {// có muốn mua thêm sản phâm không
+                this.total = total;
+                this.orderTime = LocalDateTime.now();
+                this.products = map;
+                break;
+            }
         }
     }
 
     //=========================================================================================
-    //trả về số nguyên
-    public int returnInt(Scanner scanner) {
-        int n;
-        while (true) {
-            try {
-                n = Integer.parseInt(scanner.nextLine());
-                if (n < 1) {
-                    throw new Exception();
-                }
-                break;
-            } catch (Exception e) {
-                System.out.print("Vui lòng nhập lại: ");
-            }
-        }
-        return n;
-    }
 
     //kiểm tra số lượng trong kho,tính giá tiền
-    public double checkQuatity(Scanner scanner, Product product) {
+    public double checkQuatity(Scanner scanner, Product product, Map<Integer, Integer> map) {
 
         System.out.print("Nhập số lượng muốn mua:");
         int quantity;
@@ -125,17 +119,22 @@ public class Order {
             }
             System.out.print("Số lượng muốn mua vượt quá số hàng trong kho, vui lòng chọn lại: ");
         }
-        product.setQuantity(product.getQuantity() - quantity);
-        this.products.put(product.getId(), quantity);
-        return quantity * product.getPrice();
+        if (this.customer.getBalance() < quantity * product.getPrice()) {
+            System.out.println("Tài khoản của bạn không đủ tiền thanh toán!");
+            return 0;
+        }
+        product.setQuantity(product.getQuantity() - quantity); /// trừ số lượng trong kho
+        map.put(product.getId(), quantity);// thêm vào list order
+        this.customer.setBalance(this.customer.getBalance() - quantity * product.getPrice());// trừ tiền
+        return quantity * product.getPrice();// trả vể tổng tiền
     }
 
     // kiểm tra mua tiếp hay ko
-    public void buyMore(Scanner scanner, double total) {
+    public boolean buyMore(Scanner scanner) {
         System.out.println("1. Mua thêm   2. Chốt đơn hàng ");
         int buyMoreChoice;
         while (true) {
-            buyMoreChoice = =returnInt(scanner);
+            buyMoreChoice = returnInt(scanner);
             if (buyMoreChoice == 1 || buyMoreChoice == 2) {
                 break;
             }
@@ -143,10 +142,10 @@ public class Order {
         }
 
         if (buyMoreChoice == 2) {                                   // không mua nữa kết thúc vòng lặp
-            this.orderTime = LocalDateTime.now();             //set thời điểm hiện tại khi tạo order mới
+            //set thời điểm hiện tại khi tạo order mới
             ///  this.status;                                        //status ??
-            this.total = total;
-            return;
+            return true;
         }
+        return false;
     }
 }

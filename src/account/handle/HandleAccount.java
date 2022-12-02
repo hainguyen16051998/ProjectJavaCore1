@@ -7,18 +7,23 @@ import account.view.MenuAdmin;
 import shop.entity.Customer;
 import shop.entity.Shop;
 import shop.view.MenuCustomer;
+import shop.view.MenuStaff;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class HandleAccount {
-    Menu menu;
-    Shop shop;
+    private Menu menu;
+    private Shop shop;
 
     public HandleAccount(Menu menu, Shop shop) {
         this.menu = menu;
         this.shop = shop;
+    }
+
+    public HandleAccount() {
+
     }
 
     //    // Kiểm tra trùng SĐT vs hệ thống
@@ -61,20 +66,21 @@ public class HandleAccount {
             if (check) {
                 break;
             }
-            System.out.println("Kiểm tra lại username!");
+            System.out.println("Đăng nhập không thành công!");
         }
     }
 
     /// check role
     public void checkRole(Scanner scanner, List<User> users, User user) {
         if (user.getRole().equals("admin")) {
-            MenuAdmin menuAdmin = new MenuAdmin();
-            menuAdmin.showMenu();
+            MenuAdmin menuAdmin = new MenuAdmin(this.shop);
+            menuAdmin.showMenu(scanner,user);
         } else if (user.getRole().equals("customer")) {
-            MenuCustomer menuCustomer = new MenuCustomer();
-            menuCustomer.showMenu(scanner, shop, user);
+            MenuCustomer menuCustomer = new MenuCustomer(this.shop);
+            menuCustomer.showMenu(scanner,users, user);
         } else if (user.getRole().equals("staff")) {
-
+            MenuStaff menuStaff = new MenuStaff(this.shop);
+            menuStaff.showMenu(scanner,users, user);
         } else if (user.getRole().equals("teacher")) {
 
         } else {
@@ -84,15 +90,14 @@ public class HandleAccount {
 
     // Đăng ky khách hàng ===> set luôn role customer
     public void registerAcc(Scanner scanner, List<User> users) {
-        User user = new User();
+        Customer customer = new Customer();
         System.out.println("================ Đăng ký tài khoản ===============");
-        user.setUsername(inputUsername(scanner, users));
-        user.setEmail(inputEmail(scanner, users));
-        user.setPassword(inputPassword(scanner));
-        user.setRole("customer");
-        users.add(user);
-/// downcasting
-//        Customer customer = (Customer) user;
+        customer.setUsername(inputUsername(scanner, users));
+        customer.setEmail(inputEmail(scanner, users));
+        customer.setPassword(inputPassword(scanner));
+        customer.setRole("customer");
+        users.add((User) customer);
+        this.shop.getCustomers().add(customer);
 
     }
 
@@ -104,8 +109,6 @@ public class HandleAccount {
         if (user.getEmail().equals(email)) {
             String password = inputPassword(scanner);
             user.setPassword(password);
-            Menu menu = new Menu();
-            menu.viewFunction(scanner, users, user);
         }
         System.out.println("Tài khoản chưa tồn tại!");
     }

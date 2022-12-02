@@ -1,16 +1,25 @@
 package shop.view;
 
+import account.entity.IChooseFunction;
+import account.entity.User;
 import shop.entity.Staff;
 import shop.entity.Shop;
 import shop.handle.HandleStaff;
 
+import java.util.List;
 import java.util.Scanner;
 
-public class MenuStaff {
-    HandleStaff handleStaff = new HandleStaff();
+public class MenuStaff implements IChooseFunction {
+    private Shop shop;
+
+    public MenuStaff(Shop shop) {
+        this.shop = shop;
+    }
 
     // hiện thị chức năng được chọn
-    public void showMenu(Scanner scanner, Shop shop, shop.entity.Staff staff) {
+    public void showMenu(Scanner scanner, List<User> users, User user) {
+        HandleStaff handleStaff = new HandleStaff();
+        Staff staff = (Staff) user;
         while (true) {
             System.out.println("Xin mời chọn chức năng: ");
             System.out.println("1. Xem danh sách sản phẩm");
@@ -19,44 +28,26 @@ public class MenuStaff {
             System.out.println("4. Xóa sản phẩm ");
             System.out.println("5. Xem danh sách đơn hàng ");
             System.out.println("0. Đăng xuất ");
-            chooseFunction(scanner, shop, staff);
-        }
-    }
-
-    //// chọn chức năng
-    public void chooseFunction(Scanner scanner, Shop shop, Staff staff) {
-        System.out.print("Chọn chức năng: ");
-        int choice;
-        while (true) {
-            try {
-                choice = Integer.parseInt(scanner.nextLine());
-                if (choice < 0 || choice > 5) {
-                    throw new Exception();
-                }
-                break;
-            } catch (Exception e) {
-                System.out.print("Vui lòng chọn chức năng hợp lệ: ");
+            int choice = chooseFunction(scanner,5);
+            switch (choice) {
+                case 1:
+                    handleStaff.showProducts(this.shop.getProducts());
+                    break;
+                case 2:
+                    handleStaff.editProduct(scanner, this.shop.getProducts());
+                    break;
+                case 3:
+                    handleStaff.addProduct(scanner, this.shop.getProducts());
+                    break;
+                case 4:
+                    handleStaff.removeProduct(scanner, this.shop.getProducts());
+                    break;
+                case 5:
+                    handleStaff.showOrder(this.shop.getOrders());
+                    break;
+                case 0: // Quay lại  menu đăng nhập
+                    return ;
             }
-        }
-
-        switch (choice) {
-            case 1:
-                handleStaff.showProducts(shop.getProducts());
-                break;
-            case 2:
-                handleStaff.editProduct(scanner, shop.getProducts());
-                break;
-            case 3:
-                handleStaff.addProduct(scanner, shop.getProducts());
-                break;
-            case 4:
-                handleStaff.removeProduct(scanner, shop.getProducts());
-                break;
-            case 5:
-                handleStaff.showOrder(shop.getOrders());
-                break;
-            case 0: // Quay lại  menu đăng nhập
-                return;
         }
     }
 }
