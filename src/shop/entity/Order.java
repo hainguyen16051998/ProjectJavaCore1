@@ -3,7 +3,6 @@ package shop.entity;
 
 import shop.handle.IHandle;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -16,9 +15,8 @@ public class Order implements IHandle {
     private Map<Integer, Integer> products;
     private Customer customer;
 
-    public Order(Customer customer) {
+    public Order() {
         this.id = autoID++;
-        this.customer = customer;
     }
 
     public int getId() {
@@ -71,7 +69,8 @@ public class Order implements IHandle {
     }
 
 
-    public void inputInfo(Scanner scanner, List<Product> products) {
+    public void inputInfo(Scanner scanner, List<Product> products, Customer customer) {
+        this.customer=customer;
         double total = 0;// tổng tiền thanh toán
         Map<Integer, Integer> map = new HashMap<>();
         while (true) {
@@ -79,7 +78,7 @@ public class Order implements IHandle {
             System.out.print("Nhập id mặt hàng muốn mua: ");
             productId = returnInt(scanner);
             boolean findID = false;
-            boolean canBuy = false;
+
             for (Product p : products) {
                 if (productId == p.getId()) {
                     findID = true;

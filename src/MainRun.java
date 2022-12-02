@@ -2,11 +2,10 @@ import account.entity.User;
 import account.handle.HandleAccount;
 import account.view.Menu;
 import com.google.gson.Gson;
-import data.HandleFile;
-import org.ietf.jgss.GSSContext;
+import com.google.gson.reflect.TypeToken;
 import shop.entity.*;
 
-import java.time.temporal.ChronoUnit;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -39,26 +38,28 @@ public class MainRun {
         List<Product> products = new ArrayList<>();
         products.add(product);
         shop.setProducts(products);
-        Order order = new Order((Customer) user2);
+        Order order = new Order();
         List<Order> orders = new ArrayList<>();
         orders.add(order);
         user2.setOrders(orders);
         shop.setOrders(orders);
-        order.inputInfo(scanner, shop.getProducts());
+        order.inputInfo(scanner, shop.getProducts(), (Customer) user2);
+        Type type = new TypeToken<Shop>() {
+        }.getType();
 
-//        Gson gson = new Gson();
-//        String json = gson.toJson(orders);
-//        System.out.println(json);
+        Gson gson = new Gson();
+        String json = gson.toJson(customers);
+        System.out.println(json);
 //        System.out.println(shop.toString());
 
-
-        Menu menu = new Menu();
-        HandleAccount handleAccount = new HandleAccount(menu, shop);
-        menu.setHandleAccount(handleAccount);
-        menu.setShop(shop);
-        while (true) {
-            menu.mainMenu(scanner, users);
-            System.out.println(users);
-        }
+//
+//        Menu menu = new Menu();
+//        HandleAccount handleAccount = new HandleAccount(menu, shop);
+//        menu.setHandleAccount(handleAccount);
+//        menu.setShop(shop);
+//        while (true) {
+//            menu.mainMenu(scanner, users);
+//            System.out.println(users);
+//        }
     }
 }

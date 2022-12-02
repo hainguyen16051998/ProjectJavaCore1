@@ -9,19 +9,19 @@ import shop.entity.Shop;
 import java.util.List;
 import java.util.Scanner;
 
-public class HandleCustomer implements IHandle{
+public class HandleCustomer implements IHandle {
 
     public void addOrder(Scanner scanner, Customer customer, Shop shop) throws NullPointerException {
-        Order order = new Order(customer);
-        order.inputInfo(scanner, shop.getProducts());
-        if (order.getTotal()>0) {
+        Order order = new Order();
+        order.inputInfo(scanner, shop.getProducts(), customer);
+        if (order.getTotal() > 0) {
             customer.getOrders().add(order);
             shop.getOrders().add(order);
         }
     }
 
 
-    public void editCustomer(List<User> users,Customer customer, Scanner scanner){
+    public void editCustomer(List<User> users, Customer customer, Scanner scanner) {
         HandleAccount handleAccount = new HandleAccount();
         customer.showInfo();
         System.out.println("Thay đổi thông tin");
@@ -32,9 +32,9 @@ public class HandleCustomer implements IHandle{
         System.out.print("SĐT: ");/// check
         customer.setPhone(scanner.nextLine());
         System.out.print("Email: ");
-        handleAccount.changeEmail(scanner,users,customer);
+        handleAccount.changeEmail(scanner, users, customer);
         System.out.print("Password: ");
-        handleAccount.changePassword(scanner,customer);
+        handleAccount.changePassword(scanner, customer);
 
     }
 }
