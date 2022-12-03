@@ -16,5 +16,25 @@
       "price": 105.0,
       "description": "tv thoại"
     }
-  ]
+  ],
+  "staffs": [
+    {
+      "id": 0,
+      "username": "staff",
+      "name": "Staff",
+      "email": "staff@gmail.com",
+      "password": "123"
+    }
+  ],
+  "customers": [
+    {
+      "balance": 1000.0,
+      "id": 0,
+      "username": "customer",
+      "name": "Customer",
+      "email": "customer@gmail.com",
+      "password": "123"
+    }
+  ],
+  "orders": []
 }

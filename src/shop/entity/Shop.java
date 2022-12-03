@@ -12,6 +12,10 @@ public class Shop {
     private List<Order> orders;
 
     public Shop() {
+        this.customers = new ArrayList<>();
+        this.products = new ArrayList<>();
+        this.orders = new ArrayList<>();
+        this.staffs = new ArrayList<>();
     }
 
     public List<Product> getProducts() {

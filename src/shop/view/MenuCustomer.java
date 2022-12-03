@@ -16,6 +16,7 @@ public class MenuCustomer implements IChooseFunction {
 
     public MenuCustomer(Shop shop) {
         this.shop = shop;
+
     }
 
     /// hiện thị chức năng được chọn

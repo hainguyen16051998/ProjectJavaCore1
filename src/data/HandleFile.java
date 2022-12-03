@@ -2,6 +2,7 @@ package data;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import school.entity.School;
 import shop.entity.Product;
 import shop.entity.Shop;
 
@@ -12,21 +13,25 @@ import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class HandleFile{
+public class HandleFile {
+
     Gson gson = new Gson();
 
-    public HandleFile() {
+    public <T> void saveFile(T obj, String o) {
+        String path = null;
+        if (o.equals("shop")){
+            path = "src/data/shop.json";
+        }
+        if (o.equals("school")){
+            path = "src/data/school.json";
+        }
 
-    }
-
-    public void saveFile(Shop shop) {
-
-        String json = gson.toJson(shop);
+        String json = gson.toJson(obj);
 
         FileOutputStream fos = null;
 
         try {
-            fos = new FileOutputStream("src/data/shop.json");
+            fos = new FileOutputStream(path);
 
             byte[] data = json.getBytes("utf8");
 
@@ -45,13 +50,14 @@ public class HandleFile{
 
     }
 
-    public Shop readFile() {
-        Shop shop = new Shop();
+    public Shop readShop() {
+        Shop shop = null;
         FileReader reader = null;
         try {
             File file = new File("src/data/shop.json");
             reader = new FileReader(file);
-            Type type = new TypeToken<Shop>(){}.getType();
+            Type type = new TypeToken<Shop>() {
+            }.getType();
             shop = gson.fromJson(reader, type);
 
         } catch (Exception e) {
@@ -64,5 +70,27 @@ public class HandleFile{
             }
         }
         return shop;
+    }
+
+    public School readSchool() {
+        School school = null;
+        FileReader reader = null;
+        try {
+            File file = new File("src/data/school.json");
+            reader = new FileReader(file);
+            Type type = new TypeToken<School>() {
+            }.getType();
+            school = gson.fromJson(reader, type);
+
+        } catch (Exception e) {
+            System.out.println("Lỗi dữ liệu");
+        } finally {
+            try {
+                reader.close();
+            } catch (Exception e) {
+                System.out.println("Lỗi dữ liệu");
+            }
+        }
+        return school;
     }
 }

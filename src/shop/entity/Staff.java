@@ -8,7 +8,8 @@ import java.util.Scanner;
 public class Staff extends User {
 
     public Staff() {
-        System.out.println("Nhập thông tin nhân viên: ");
+        this.id = autoID++;
+        this.role = "staff";
     }
 
     public Staff(String username, String name, String email, String password) {
