@@ -85,23 +85,19 @@ public class Product implements IHandle {
     }
 
     public void showInfo() {
-        System.out.println("Mã mặt hàng: " + this.id);
-        System.out.println("Tên mặt hàng: " + this.name + ", Trạng thái: " + this.status);
-        System.out.println("Số lượng: " + this.quantity + ", Giá: " + this.price);
-        System.out.println("Miêu tả sản phẩm: " + this.description);
+        System.out.printf("%10s\t\t\t%10s\t\t\t%10s\t\t\t%10s\t\t\t%10s\t\t\t%10s\n",this.id,this.name,this.status,this.quantity,this.price,this.description);
     }
 
-
     public void inputInfo(Scanner scanner) {
-        System.out.println("Nhập tên mặt hàng: ");
+        System.out.print("Nhập tên mặt hàng: ");
         this.name = scanner.nextLine();
         System.out.print("Nhập trạng thái (1.Mới - 2.Cũ):  ");
         choseStatus(scanner);
         System.out.print("Nhập đơn giá: ");
         inputPrice(scanner);
-        System.out.println("Nhập số lượng hàng: ");
+        System.out.print("Nhập số lượng hàng: ");
         this.quantity = returnInt(scanner);
-        System.out.println("Nhập miêu tả sản phẩm: ");
+        System.out.print("Nhập miêu tả sản phẩm: ");
         this.description = scanner.nextLine();
     }
 

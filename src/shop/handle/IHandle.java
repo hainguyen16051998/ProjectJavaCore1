@@ -25,10 +25,12 @@ public interface IHandle {
     }
 
     default void showProducts(List<Product> products) throws NullPointerException{
-
+        System.out.println("=============Danh sách sản phẩm===========");
+        System.out.printf("%10s\t\t\t%10s\t\t\t%10s\t\t\t%10s\t\t%10s\t\t\t%10s\n","ID sản phẩm","Tên sản phẩm","Trạng thái","Số lượng","Giá","Miêu tả");
         for (Product product : products) {
             product.showInfo();
         }
+        System.out.println("==========================================");
     }
 
     default void showOrder(List<Order> orders)throws NullPointerException {
