@@ -35,7 +35,7 @@ public class MainRun {
         customers.add(user2);
         shop.setCustomers(customers);
         Product product = new Product("iphone", "Cũ", 12, 135, "điệm thoại");
-        Product product1 = new Product("tv", "Cũ", 12, 105, "tv thoại");
+        Product product1 = new Product("tv", "Cũ", 12, 105, "tv");
         System.out.println(product.getId());
         List<Product> products = new ArrayList<>();
         products.add(product);
