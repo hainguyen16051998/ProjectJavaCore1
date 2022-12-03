@@ -1,12 +1,13 @@
 package school.entity;
 
+import account.entity.IChooseFunction;
 import account.entity.User;
 import school.constant.RoleConstant;
 import school.constant.SubjectType;
 
 import java.util.Scanner;
 
-public class Teacher extends User {
+public class Teacher extends User implements IChooseFunction {
     private String major;
 
     public String getMajor() {
@@ -24,12 +25,8 @@ public class Teacher extends User {
     @Override
     public void inputInfo(Scanner scanner) {
         System.out.print("Chọn phụ trách: 1.Tech 2.Bussiness 3. Language ");
-        int majorChoice = Integer.parseInt(scanner.nextLine());
-
-        while (majorChoice < 1 | majorChoice > 3) {
-            System.out.print("Chọn lại môn hợp lệ");                             //bổ sung try catch sau
-            majorChoice = Integer.parseInt(scanner.nextLine());
-        }
+        System.out.print("Chọn: ");
+        int majorChoice = chooseFunction(scanner,3,1);
         switch (majorChoice) {
             case 1:
                 this.major = SubjectType.TECH.value;

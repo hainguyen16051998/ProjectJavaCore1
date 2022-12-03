@@ -1,0 +1,20 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "iphone",
+      "status": "Cũ",
+      "quantity": 12,
+      "price": 135.0,
+      "description": "điệm thoại"
+    },
+    {
+      "id": 2,
+      "name": "tv",
+      "status": "Cũ",
+      "quantity": 12,
+      "price": 105.0,
+      "description": "tv thoại"
+    }
+  ]
+}

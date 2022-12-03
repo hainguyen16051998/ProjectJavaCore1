@@ -11,6 +11,8 @@ public class Shop {
     private List<Customer> customers;
     private List<Order> orders;
 
+    public Shop() {
+    }
 
     public List<Product> getProducts() {
         return products;

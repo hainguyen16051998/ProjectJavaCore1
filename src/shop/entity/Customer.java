@@ -3,6 +3,7 @@ package shop.entity;
 import account.entity.User;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ public class Customer extends User {
     private List<Order> orders;
 
     public Customer() {
+
     }
 
     public Customer(String username, String name, String email, String password) {

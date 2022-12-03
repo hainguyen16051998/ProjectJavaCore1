@@ -1,11 +1,12 @@
 package school.entity;
 
+import account.entity.IChooseFunction;
 import account.entity.User;
 import school.constant.RoleConstant;
 
 import java.util.Scanner;
 
-public class Student extends User {
+public class Student extends User implements IChooseFunction {
     private double avgScore;
 
     public double getAvgScore() {
@@ -23,7 +24,7 @@ public class Student extends User {
     @Override
     public void inputInfo(Scanner scanner) {
         System.out.print("Nhập điểm trung bình: ");
-        this.avgScore = Double.parseDouble(scanner.nextLine());
+        this.avgScore = returnAvg(scanner);
     }
 
     public void showInfo(Scanner scanner) {

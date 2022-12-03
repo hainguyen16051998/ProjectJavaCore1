@@ -25,7 +25,8 @@ public class MenuAdmin implements IChooseFunction {
         System.out.println("2. Quản lý khách hàng");
         System.out.println("3. Chỉnh sửa thông tin cá nhân");
         System.out.println("0. Đăng xuất");
-        int ch = chooseFunction(scanner, 3);
+        System.out.print("Chọn chức năng: ");
+        int ch = chooseFunction(scanner, 3,0);
         switch (ch) {
             case 1:
                 ;
@@ -45,7 +46,8 @@ public class MenuAdmin implements IChooseFunction {
         System.out.println("2. Tạo tài khoản");
         System.out.println("3. Xóa tài khoản");
         System.out.println("0. Thoát");
-        int ch = chooseFunction(scanner, 3);
+        System.out.print("Chọn chức năng: ");
+        int ch = chooseFunction(scanner, 3,0);
         switch (ch) {
             case 1:
 
@@ -69,7 +71,7 @@ public class MenuAdmin implements IChooseFunction {
             System.out.println("4. Thay đổi số điện thoại");
             System.out.println("0. Đăng xuất");
             System.out.print("Mời chọn: ");
-            int ch = chooseFunction(scanner, 4);
+            int ch = chooseFunction(scanner, 4,0);
             switch (ch) {
                 case 1:
                     handleAccount.changeUsername(scanner, users, user);
