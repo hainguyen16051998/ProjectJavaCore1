@@ -27,6 +27,11 @@ public class Teacher extends User implements IChooseFunction {
         System.out.print("Chọn phụ trách: 1.Tech 2.Bussiness 3. Language ");
         System.out.print("Chọn: ");
         int majorChoice = chooseFunction(scanner,3,1);
+
+        while (majorChoice < 1 || majorChoice > 3) {
+            System.out.print("Chọn lại môn hợp lệ");
+            majorChoice = chooseFunction(scanner,3,1);
+        }
         switch (majorChoice) {
             case 1:
                 this.major = SubjectType.TECH.value;
@@ -40,9 +45,14 @@ public class Teacher extends User implements IChooseFunction {
         }
     }
 
-    public void showInfo(Scanner scanner) {
+    public void showInfo() {
         System.out.println("Mã tài khoản: " + this.id + ", Email: " + this.email);
         System.out.println("Họ tên: " + this.name + ", địa chỉ" + this.address + ", SĐT: " + this.phone);
         System.out.println("Môn phụ trách " + this.major);
+    }
+
+    public Teacher(String username, String name, String email, String password, String major) {
+        super(username, name, email, password);
+        this.major = major;
     }
 }
