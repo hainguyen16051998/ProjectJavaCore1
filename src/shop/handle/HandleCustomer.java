@@ -38,14 +38,17 @@ public class HandleCustomer implements IHandle, IChooseFunction {
 
             switch (changeInfoChoice) {
                 case 1:
+                    System.out.println("============ Sửa họ tên ================");
                     System.out.print("Họ tên mới: ");
                     customer.setName(scanner.nextLine());
                     continue;
                 case 2:
+                    System.out.println("============ Sửa địa chỉ ================");
                     System.out.print("Địa chỉ mới: ");
                     customer.setAddress(scanner.nextLine());
                     continue;
                 case 3:
+                    System.out.println("============ Sửa SĐT ================");
                     System.out.print("SĐT mới: ");
                     customer.setPhone(scanner.nextLine());
                     continue;
