@@ -12,17 +12,16 @@ import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class HandleFile<T> {
+public class HandleFile{
     Gson gson = new Gson();
-    private T obj;
 
-    public HandleFile(T obj) {
-        this.obj = obj;
+    public HandleFile() {
+
     }
 
-    public void saveFile() {
+    public void saveFile(Shop shop) {
 
-        String json = gson.toJson(obj);
+        String json = gson.toJson(shop);
 
         FileOutputStream fos = null;
 
@@ -46,22 +45,24 @@ public class HandleFile<T> {
 
     }
 
-//    public <E> void readFile(List<E>) {
-//        FileReader reader = null;
-//        try {
-//            File file = new File("src/data/shop.json");
-//            reader = new FileReader(file);
-//            Type type = new TypeToken<List<Product>>(){}.getType();
-//            obj = gson.fromJson(reader, type);
-//
-//        } catch (Exception e) {
-//            System.out.println("Lỗi dữ liệu");
-//        } finally {
-//            try {
-//                reader.close();
-//            } catch (Exception e) {
-//                System.out.println("Lỗi dữ liệu");
-//            }
-//        }
-//    }
+    public Shop readFile() {
+        Shop shop = new Shop();
+        FileReader reader = null;
+        try {
+            File file = new File("src/data/shop.json");
+            reader = new FileReader(file);
+            Type type = new TypeToken<Shop>(){}.getType();
+            shop = gson.fromJson(reader, type);
+
+        } catch (Exception e) {
+            System.out.println("Lỗi dữ liệu");
+        } finally {
+            try {
+                reader.close();
+            } catch (Exception e) {
+                System.out.println("Lỗi dữ liệu");
+            }
+        }
+        return shop;
+    }
 }

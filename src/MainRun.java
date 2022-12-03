@@ -66,23 +66,25 @@ public class MainRun {
 //        HandleFile<Product> handleFile = new HandleFile<>(product1);
 //        handleFile.readFile();
 
-        Shop shop1 = new Shop();
-        FileReader reader = null;
-        try {
-            File file = new File("D:\\Java_Springboot\\ProjectJavaCore1\\src\\data\\shop.json");
-            reader = new FileReader(file);
-            Type type = new TypeToken<Shop>(){}.getType();
-            shop1 = gson.fromJson(reader, type);
 
-        } catch (Exception e) {
-            System.out.println("Lỗi dữ liệu");
-        } finally {
-            try {
-                reader.close();
-            } catch (Exception e) {
-                System.out.println("Lỗi dữ liệu");
-            }
-        }
+        HandleFile handleFile = new HandleFile();
+        Shop shop1 = handleFile.readFile();
+//        FileReader reader = null;
+//        try {
+//            File file = new File("D:\\Java_Springboot\\ProjectJavaCore1\\src\\data\\shop.json");
+//            reader = new FileReader(file);
+//            Type type = new TypeToken<Shop>(){}.getType();
+//            shop1 = gson.fromJson(reader, type);
+//
+//        } catch (Exception e) {
+//            System.out.println("Lỗi dữ liệu");
+//        } finally {
+//            try {
+//                reader.close();
+//            } catch (Exception e) {
+//                System.out.println("Lỗi dữ liệu");
+//            }
+//        }
 
         System.out.println(shop1.toString());
 
