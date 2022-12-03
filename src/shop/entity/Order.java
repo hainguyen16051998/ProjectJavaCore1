@@ -62,7 +62,6 @@ public class Order implements IHandle {
         System.out.println("Đơn đặt hàng mã số " + this.id + ", được khởi tạo lúc " + this.orderTime);
         System.out.println("Trạng thái đơn hàng: " + this.status);
         System.out.println("Tên khách hàng: " + this.customer.getName());
-        //// show Map<Integer, Integer> products ??
         System.out.println("Số lượng sản phẩm: ");
         for (Map.Entry<Integer, Integer> entry : products.entrySet()){
             System.out.println("\t\tMã: "+entry.getKey()+" - Số lượng: "+entry.getValue());
@@ -79,7 +78,6 @@ public class Order implements IHandle {
             System.out.print("Nhập id mặt hàng muốn mua: ");
             productId = returnInt(scanner);
             boolean findID = false;
-            boolean canBuy = false;
             for (Product p : products) {
                 if (productId == p.getId()) {
                     findID = true;
@@ -142,8 +140,6 @@ public class Order implements IHandle {
         }
 
         if (buyMoreChoice == 2) {                                   // không mua nữa kết thúc vòng lặp
-            //set thời điểm hiện tại khi tạo order mới
-            ///  this.status;                                        //status ??
             return true;
         }
         return false;
