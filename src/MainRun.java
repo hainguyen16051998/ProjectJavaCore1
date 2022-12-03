@@ -19,7 +19,7 @@ public class MainRun {
 
         Customer user2 = new Customer("tuan", "Hà Nam", "ta456@gmail.com", "123");
         User user3 = new Staff("linh", "Hà Nội", "linh789@gmail.com", "123");
-        user2.setBalance(10000);
+        user2.setBalance(1000);
         user1.setRole("admin");
         user2.setRole("customer");
         user3.setRole("staff");
@@ -34,9 +34,11 @@ public class MainRun {
         customers.add(user2);
         shop.setCustomers(customers);
         Product product = new Product("iphone", "Cũ", 12, 135, "điệm thoại");
+        Product product1 = new Product("tv", "Cũ", 12, 105, "tv thoại");
         System.out.println(product.getId());
         List<Product> products = new ArrayList<>();
         products.add(product);
+        products.add(product1);
         shop.setProducts(products);
         Order order = new Order();
         List<Order> orders = new ArrayList<>();

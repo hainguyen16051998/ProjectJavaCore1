@@ -111,7 +111,7 @@ public class HandleAccount {
             String password = inputPassword(scanner);
             user.setPassword(password);
         }else {
-            System.out.println("Tài khoản chưa tồn tại!");
+            System.out.println("Email của tài khoản không đúng");
         }
     }
 

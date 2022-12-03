@@ -3,6 +3,7 @@ package shop.entity;
 
 import shop.handle.IHandle;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -15,8 +16,9 @@ public class Order implements IHandle {
     private Map<Integer, Integer> products;
     private Customer customer;
 
-    public Order() {
+    public Order(Customer customer) {
         this.id = autoID++;
+        this.customer = customer;
     }
 
     public int getId() {
@@ -60,7 +62,6 @@ public class Order implements IHandle {
         System.out.println("Đơn đặt hàng mã số " + this.id + ", được khởi tạo lúc " + this.orderTime);
         System.out.println("Trạng thái đơn hàng: " + this.status);
         System.out.println("Tên khách hàng: " + this.customer.getName());
-        //// show Map<Integer, Integer> products ??
         System.out.println("Số lượng sản phẩm: ");
         for (Map.Entry<Integer, Integer> entry : products.entrySet()){
             System.out.println("\t\tMã: "+entry.getKey()+" - Số lượng: "+entry.getValue());
@@ -69,8 +70,7 @@ public class Order implements IHandle {
     }
 
 
-    public void inputInfo(Scanner scanner, List<Product> products, Customer customer) {
-        this.customer=customer;
+    public void inputInfo(Scanner scanner, List<Product> products) {
         double total = 0;// tổng tiền thanh toán
         Map<Integer, Integer> map = new HashMap<>();
         while (true) {
@@ -78,7 +78,6 @@ public class Order implements IHandle {
             System.out.print("Nhập id mặt hàng muốn mua: ");
             productId = returnInt(scanner);
             boolean findID = false;
-
             for (Product p : products) {
                 if (productId == p.getId()) {
                     findID = true;
@@ -141,8 +140,6 @@ public class Order implements IHandle {
         }
 
         if (buyMoreChoice == 2) {                                   // không mua nữa kết thúc vòng lặp
-            //set thời điểm hiện tại khi tạo order mới
-            ///  this.status;                                        //status ??
             return true;
         }
         return false;

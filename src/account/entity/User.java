@@ -103,7 +103,6 @@ public class User {
                 '}';
     }
 
-
     //Nhập thông tin user
     public void inputInfo(Scanner scanner) {
         System.out.print("Mời nhập họ tên: ");
@@ -112,6 +111,7 @@ public class User {
         this.address = scanner.nextLine();
         System.out.print("Mời nhập SĐT: ");
         this.phone= scanner.nextLine();
+        System.out.println("---------");
     }
 
 
