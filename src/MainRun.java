@@ -1,8 +1,8 @@
 import account.entity.User;
 import account.handle.HandleAccount;
 import account.view.Menu;
-import com.google.gson.Gson;
-import data.HandleFile;
+//import com.google.gson.Gson;
+//import data.HandleFile;
 import org.ietf.jgss.GSSContext;
 import shop.entity.*;
 
@@ -17,9 +17,8 @@ public class MainRun {
         Scanner scanner = new Scanner(System.in);
         List<User> users = new ArrayList<>();
         User user1 = new User("hai", "Hải Dương", "hai123@gmail.com", "123");
-
         Customer user2 = new Customer("tuan", "Hà Nam", "ta456@gmail.com", "123");
-        User user3 = new Staff("linh", "Hà Nội", "linh789@gmail.com", "123");
+        Staff user3 = new Staff("linh", "Hà Nội", "linh789@gmail.com", "123");
         user2.setBalance(1000);
         user1.setRole("admin");
         user2.setRole("customer");

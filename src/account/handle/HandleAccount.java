@@ -4,6 +4,7 @@ package account.handle;
 import account.entity.User;
 import account.view.Menu;
 import account.view.MenuAdmin;
+import org.omg.CORBA.UShortSeqHelper;
 import shop.entity.Customer;
 import shop.entity.Shop;
 import shop.view.MenuCustomer;
@@ -25,6 +26,25 @@ public class HandleAccount {
     public HandleAccount() {
 
     }
+
+//
+//    public static void removeAccount(Scanner scanner, List<User> users, User user) {
+//        System.out.println("========== Xóa tài khoản Account =========");
+//        System.out.print("Bạn muốn xóa tài khoản nào: ");
+//        String username = scanner.nextLine();
+//        for (User user1 : users) {
+//            if (user1.getUsername().equals(username)) {
+//                users.remove(user1);
+//            } else {
+//                System.out.print("Tài khoản không tồn tại, nhập lại: ");
+//                removeAccount(scanner, users, user);
+//            }
+//        }
+//    }
+
+    public static void editAccount(Scanner scanner, List<User> users) {
+    }
+
 
     //    // Kiểm tra trùng SĐT vs hệ thống
 //    private void checkPhone(Scanner scanner) {             // Lỗi so sánh
@@ -74,13 +94,13 @@ public class HandleAccount {
     public void checkRole(Scanner scanner, List<User> users, User user) {
         if (user.getRole().equals("admin")) {
             MenuAdmin menuAdmin = new MenuAdmin(this.shop);
-            menuAdmin.showMenu(scanner,user);
+            menuAdmin.showMenuManager(scanner, users, user);
         } else if (user.getRole().equals("customer")) {
             MenuCustomer menuCustomer = new MenuCustomer(this.shop);
-            menuCustomer.showMenu(scanner,users, user);
+            menuCustomer.showMenu(scanner, users, user);
         } else if (user.getRole().equals("staff")) {
             MenuStaff menuStaff = new MenuStaff(this.shop);
-            menuStaff.showMenu(scanner,users, user);
+            menuStaff.showMenu(scanner, users, user);
         } else if (user.getRole().equals("teacher")) {
 
         } else {
@@ -107,17 +127,24 @@ public class HandleAccount {
         System.out.println("============ Quên mật khẩu ================");
         System.out.print("Email: ");
         String email = scanner.nextLine();
-        if (user.getEmail().equals(email)) {
-            String password = inputPassword(scanner);
-            user.setPassword(password);
-        }else {
-            System.out.println("Email của tài khoản không đúng");
-        }
+        for (User user1 : users)
+            if (user1.getEmail().equals(email)) {
+                String password = inputPassword(scanner);
+                user1.setPassword(password);
+            } else {
+                System.out.println("Email của tài khoản không đúng");
+            }
     }
 
 
     //================================================ Thay đổi mật khẩu, email, usernmame==============================
     public void changeUsername(Scanner scanner, List<User> users, User user) {
+        System.out.println("======= Thay đổi username ========");
+        String newName = inputUsername(scanner, users);
+        user.setUsername(newName);
+    }
+
+    public void changeUsernameStaff(Scanner scanner, List<User> users, User user) {
         System.out.println("======= Thay đổi username ========");
         String newName = inputUsername(scanner, users);
         user.setUsername(newName);
@@ -152,7 +179,7 @@ public class HandleAccount {
 
     ///============================================= kiểm tra pass, username, email=======================
 //    kiểm tra mật khẩu
-    public String inputPassword(Scanner scanner) {
+    public static String inputPassword(Scanner scanner) {
 //        String regex = "^(?=.*[A-Z])(?=.*[\\.;\\,_-])\\S{7,15}$";//// thay lại regxx sau
         String newPass;
         System.out.print("Password: ");
@@ -168,7 +195,7 @@ public class HandleAccount {
     }
 
     /// kiểm tra email
-    public String inputEmail(Scanner scanner, List<User> users) {
+    public static String inputEmail(Scanner scanner, List<User> users) {
         String regex = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$";
         String newMail;
         System.out.print("Email: ");
@@ -193,7 +220,7 @@ public class HandleAccount {
     }
 
     //kiểm tra username
-    public String inputUsername(Scanner scanner, List<User> users) {
+    public static String inputUsername(Scanner scanner, List<User> users) {
         String newName;
         System.out.print("Username: ");
         while (true) {
@@ -211,4 +238,6 @@ public class HandleAccount {
         }
         return newName;
     }
+
+
 }
