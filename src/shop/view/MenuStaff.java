@@ -29,25 +29,30 @@ public class MenuStaff implements IChooseFunction {
             System.out.println("5. Xem danh sách đơn hàng ");
             System.out.println("0. Đăng xuất ");
             int choice = chooseFunction(scanner,5);
-            switch (choice) {
-                case 1:
-                    handleStaff.showProducts(this.shop.getProducts());
-                    break;
-                case 2:
-                    handleStaff.editProduct(scanner, this.shop.getProducts());
-                    break;
-                case 3:
-                    handleStaff.addProduct(scanner, this.shop.getProducts());
-                    break;
-                case 4:
-                    handleStaff.removeProduct(scanner, this.shop.getProducts());
-                    break;
-                case 5:
-                    handleStaff.showOrder(this.shop.getOrders());
-                    break;
-                case 0: // Quay lại  menu đăng nhập
-                    return ;
+            try {
+                switch (choice) {
+                    case 1:
+                        handleStaff.showProducts(this.shop.getProducts());
+                        break;
+                    case 2:
+                        handleStaff.editProduct(scanner, this.shop.getProducts());
+                        break;
+                    case 3:
+                        handleStaff.addProduct(scanner, this.shop.getProducts());
+                        break;
+                    case 4:
+                        handleStaff.removeProduct(scanner, this.shop.getProducts());
+                        break;
+                    case 5:
+                        handleStaff.showOrder(this.shop.getOrders());
+                        break;
+                    case 0: // Quay lại  menu đăng nhập
+                        return ;
+                }
+            } catch (Exception e) {
+                System.out.println("Chưa có dữ liệu!");
             }
+
         }
     }
 }

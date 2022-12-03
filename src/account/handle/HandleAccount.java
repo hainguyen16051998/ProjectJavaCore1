@@ -96,8 +96,9 @@ public class HandleAccount {
         customer.setEmail(inputEmail(scanner, users));
         customer.setPassword(inputPassword(scanner));
         customer.setRole("customer");
-        users.add((User) customer);
         this.shop.getCustomers().add(customer);
+        users.add((User) customer);
+
 
     }
 
@@ -109,8 +110,9 @@ public class HandleAccount {
         if (user.getEmail().equals(email)) {
             String password = inputPassword(scanner);
             user.setPassword(password);
+        }else {
+            System.out.println("Tài khoản chưa tồn tại!");
         }
-        System.out.println("Tài khoản chưa tồn tại!");
     }
 
 

@@ -43,4 +43,14 @@ public class Shop {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "products=" + products +
+                ", staffs=" + staffs +
+                ", customers=" + customers +
+                ", orders=" + orders +
+                '}';
+    }
 }

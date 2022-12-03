@@ -1,8 +1,12 @@
 import account.entity.User;
 import account.handle.HandleAccount;
 import account.view.Menu;
+import com.google.gson.Gson;
+import data.HandleFile;
+import org.ietf.jgss.GSSContext;
 import shop.entity.*;
 
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -24,6 +28,12 @@ public class MainRun {
         users.add(user2);
         users.add(user3);
         System.out.println(users);
+        List<Staff> staffs = new ArrayList<>();
+        staffs.add((Staff) user3);
+        shop.setStaffs(staffs);
+        List<Customer> customers = new ArrayList<>();
+        customers.add(user2);
+        shop.setCustomers(customers);
         Product product = new Product("iphone", "Cũ", 12, 135, "điệm thoại");
         Product product1 = new Product("tv", "Cũ", 12, 105, "tv thoại");
         System.out.println(product.getId());
@@ -37,6 +47,13 @@ public class MainRun {
         user2.setOrders(orders);
         shop.setOrders(orders);
         order.inputInfo(scanner, shop.getProducts());
+
+//        Gson gson = new Gson();
+//        String json = gson.toJson(orders);
+//        System.out.println(json);
+//        System.out.println(shop.toString());
+
+
         Menu menu = new Menu();
         HandleAccount handleAccount = new HandleAccount(menu, shop);
         menu.setHandleAccount(handleAccount);
