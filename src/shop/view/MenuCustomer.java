@@ -16,6 +16,7 @@ public class MenuCustomer implements IChooseFunction {
 
     public MenuCustomer(Shop shop) {
         this.shop = shop;
+
     }
 
     /// hiện thị chức năng được chọn
@@ -29,7 +30,8 @@ public class MenuCustomer implements IChooseFunction {
             System.out.println("3. Xem thông tin đơn hàng của bạn ");
             System.out.println("4. Xem và chỉnh sửa thông tin cá nhân ");
             System.out.println("0. Đăng xuất ");
-            int choice = chooseFunction(scanner, 4);
+            System.out.print("Chọn chức năng: ");
+            int choice = chooseFunction(scanner, 4,0);
             try {
                 switch (choice) {
                     case 1:

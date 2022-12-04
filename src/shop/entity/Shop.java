@@ -9,8 +9,14 @@ public class Shop {
     private List<Product> products;
     private List<Staff> staffs;
     private List<Customer> customers;
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> orders;
 
+    public Shop() {
+        this.customers = new ArrayList<>();
+        this.products = new ArrayList<>();
+        this.orders = new ArrayList<>();
+        this.staffs = new ArrayList<>();
+    }
 
     public List<Product> getProducts() {
         return products;

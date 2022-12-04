@@ -33,8 +33,8 @@ public class HandleCustomer implements IHandle, IChooseFunction {
             System.out.println("4. Thay đổi email: ");
             System.out.println("5. Thay đổi password: ");
             System.out.println("0. Không thay đổi thông tin ");
-
-            int changeInfoChoice = chooseFunction(scanner, 5);
+            System.out.print("Chọn chức năng: ");
+            int changeInfoChoice = chooseFunction(scanner, 5,0);
 
             switch (changeInfoChoice) {
                 case 1:

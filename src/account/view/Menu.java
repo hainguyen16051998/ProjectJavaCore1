@@ -31,7 +31,7 @@ public class Menu implements IChooseFunction {
         System.out.println("2. Đăng ký");
         System.out.println("0. Thoát");
         System.out.print("Mời chọn: ");
-        int ch = chooseFunction(scanner, 2);
+        int ch = chooseFunction(scanner, 2,0);
         switch (ch) {
             case 1:
                 handleAccount.login(scanner, users);
@@ -49,7 +49,7 @@ public class Menu implements IChooseFunction {
         System.out.println("1. Đăng nhập lại");
         System.out.println("2. Quên mật khẩu");
         System.out.print("Mời chọn: ");
-        int ch = chooseFunction(scanner, 2);
+        int ch = chooseFunction(scanner, 2,1);
         switch (ch) {
             case 1:
                 handleAccount.login(scanner, users);

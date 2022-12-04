@@ -30,7 +30,7 @@ public class MenuAdmin implements IChooseFunction {
         System.out.println("3. Chỉnh sửa tài khoản Cutstomer");
         System.out.println("4. Xóa tài khoản ");
         System.out.println("0. Thoát");
-        int ch = chooseFunction(scanner, 4);
+        int ch = chooseFunction(scanner, 4, 0);
         switch (ch) {
             case 1:
                 viewChangeInfoAdmin(scanner, users, user);
@@ -50,8 +50,7 @@ public class MenuAdmin implements IChooseFunction {
 
     }
 
-
-    // Vẫn đang check
+    //vẫn đang check
     private void removeAccount(Scanner scanner, List<User> users, User user) {
         System.out.print("Nhập Username muốn xóa: ");
         String username = scanner.nextLine();
@@ -82,7 +81,7 @@ public class MenuAdmin implements IChooseFunction {
             System.out.println("4. Thay đổi số điện thoại");
             System.out.println("0. Thoát");
             System.out.print("Mời chọn: ");
-            int ch = chooseFunction(scanner, 5);
+            int ch = chooseFunction(scanner, 4,0);
             switch (ch) {
                 case 1:
                     changeUsernameAdmin(scanner, users, user);
@@ -111,7 +110,7 @@ public class MenuAdmin implements IChooseFunction {
             System.out.println("4. Thay đổi số điện thoại");
             System.out.println("0. Thoát");
             System.out.print("Mời chọn: ");
-            int ch = chooseFunction(scanner, 4);
+            int ch = chooseFunction(scanner, 4, 0);
             switch (ch) {
                 case 1:
                     changeUsernameCustomer(scanner, users, user);
@@ -139,7 +138,7 @@ public class MenuAdmin implements IChooseFunction {
             System.out.println("4. Thay đổi số điện thoại");
             System.out.println("0. Thoát");
             System.out.print("Mời chọn: ");
-            int ch = chooseFunction(scanner, 4);
+            int ch = chooseFunction(scanner, 4, 0);
             switch (ch) {
                 case 1:
                     changeUsernameStaff(scanner, users, user);
@@ -395,5 +394,6 @@ public class MenuAdmin implements IChooseFunction {
 
     }
 }
+
 
 

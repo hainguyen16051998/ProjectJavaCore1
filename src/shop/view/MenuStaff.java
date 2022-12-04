@@ -28,7 +28,7 @@ public class MenuStaff implements IChooseFunction {
             System.out.println("4. Xóa sản phẩm ");
             System.out.println("5. Xem danh sách đơn hàng ");
             System.out.println("0. Đăng xuất ");
-            int choice = chooseFunction(scanner,5);
+            int choice = chooseFunction(scanner,5,0);
             try {
                 switch (choice) {
                     case 1:

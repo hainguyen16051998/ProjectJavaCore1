@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "iphone",
+      "status": "Cũ",
+      "quantity": 12,
+      "price": 135.0,
+      "description": "điệm thoại"
+    },
+    {
+      "id": 2,
+      "name": "tv",
+      "status": "Cũ",
+      "quantity": 12,
+      "price": 105.0,
+      "description": "tv thoại"
+    }
+  ],
+  "staffs": [
+    {
+      "id": 0,
+      "username": "staff",
+      "name": "Staff",
+      "email": "staff@gmail.com",
+      "password": "123"
+    }
+  ],
+  "customers": [
+    {
+      "balance": 1000.0,
+      "id": 0,
+      "username": "customer",
+      "name": "Customer",
+      "email": "customer@gmail.com",
+      "password": "123"
+    }
+  ],
+  "orders": []
+}

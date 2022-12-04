@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 
 public class User {
-    protected static int autoID = 1;
+    public static int autoID = 1;
     protected int id;
     protected String username;
     protected String name;

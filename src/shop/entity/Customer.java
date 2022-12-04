@@ -1,8 +1,10 @@
 package shop.entity;
 
 import account.entity.User;
+import shop.constant.RoleConstant;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,6 +13,9 @@ public class Customer extends User {
     private List<Order> orders;
 
     public Customer() {
+        this.id= autoID++;
+        this.role="customer";
+        this.orders = new ArrayList<>();
     }
 
     public Customer(String username, String name, String email, String password) {
@@ -28,7 +33,7 @@ public class Customer extends User {
 
     public void showInfo() {
         System.out.println("Mã tài khoản: " + this.id + ", Email: " + this.email);
-        System.out.println("Họ tên: " + this.name + ", địa chỉ" + this.address + ", SĐT: " + this.phone+", Số dư: "+this.balance);
+        System.out.println("Họ tên: " + this.name + ", địa chỉ" + this.address + ", SĐT: " + this.phone + ", Số dư: " + this.balance);
     }
 
 //    ==========
