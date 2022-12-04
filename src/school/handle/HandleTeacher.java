@@ -1,23 +1,24 @@
 package school.handle;
 
-import account.entity.IChooseFunction;
+import account.entity.IHandleGeneral;
 import account.entity.User;
 import account.handle.HandleAccount;
 import school.entity.Clazz;
 import school.entity.Student;
 import school.entity.Subject;
 import school.entity.Teacher;
-import shop.entity.Customer;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class HandleTeacher implements IHandle, IChooseFunction {
-    public void showSubject(List<Subject> subjects) throws NullPointerException {
-        System.out.println("\n=====Danh sách các môn học trong trường======");
-        System.out.printf("%10s\t\t\t%10s\t\t\t%10s\t\t\t%10s\n", "ID môn học", "Tên môn học", "Số tín chỉ", "Chuyên ngành");
-        for (Subject s : subjects) {
-            s.showInfo();
+public class HandleTeacher implements IHandleGeneral {
+    public void showSubject(List<Clazz> clazzes, Teacher teacher) throws NullPointerException {
+        System.out.println("\n===== Danh sách các môn học giảng viên dạy ======");
+        System.out.printf("%10s\t\t\t%10s", "Lớp", "Môn học");
+        for (Clazz c : clazzes) {
+            if (c.getTeacher() == teacher) {    //vòng lặp đi tìm lớp mình dạy
+                System.out.printf("%10s\t\t\t%10s\n",c.getId(),c.getSubject().getName());
+            }
         }
     }
 
@@ -26,7 +27,7 @@ public class HandleTeacher implements IHandle, IChooseFunction {
         for (Clazz c : clazzes) {
             if (c.getTeacher() == teacher) {    //vòng lặp đi tìm lớp mình dạy
                 System.out.println("Danh sách học sinh lớp " + c.getId() + ": ");
-                System.out.printf("%15s\t\t\t%15s\t\t\t%15s\n", "ID học sinh", "Tên học sinh", "Điểm trung bình");
+                System.out.printf("%15s\t\t\t%15s\t\t\t%15s\n", "Mã SV", "Họ tên", "Điểm trung bình");
                 for (Student s : c.getStudents()) {
                     System.out.printf("%15s\t\t\t%15s\t\t\t%15s\n", s.getId(), s.getName(), s.getAvgScore());
                 }
@@ -74,8 +75,8 @@ public class HandleTeacher implements IHandle, IChooseFunction {
                     for (Student s : clazz.getStudents()) {                   // tìm trong vòng lặp có student trùng id đã nhập thì set điểm
                         if (s.getId() == studentId) {
                             System.out.print("Nhập điểm mới cho học sinh " + s.getName() + ": ");
-                            double newAvrScore = returnDouble(scanner);     ///check điều kiện từ 0-10 + try catch
-                            s.setAvgScore(newAvrScore);
+//                            double newAvrScore = returnAvg(scanner);     ///check điều kiện từ 0-10 + try catch
+                            s.setAvgScore(returnAvg(scanner));
                             checkId = true;
                             break;
                         }

@@ -1,6 +1,11 @@
 package school.entity;
 
-public class Subject {
+import account.entity.IHandleGeneral;
+import school.constant.SubjectType;
+
+import java.util.Scanner;
+
+public class Subject implements IHandleGeneral {
     private static int autoID = 1;
     private int id;
     private String name;
@@ -11,20 +16,55 @@ public class Subject {
         id = autoID++;
     }
 
-    public static int getAutoID() {
-        return autoID;
+
+    /// Các môn học sẽ là dữ liệu có sẵn nên ko cần inputInfo phải không?
+    public void inputInfo(Scanner scanner) {
+        System.out.print("Tên môn học: ");
+        this.name = scanner.nextLine();
+        System.out.print("Số tín chỉ (<4): ");
+        this.numberOfCredits = chooseFunction(scanner, 3, 1);
+        System.out.print("Chọn chuyên ngành: \n\t1.Tech \n\t2.Bussiness \n\t3.Language ");
+        System.out.print("Chọn: ");
+        int majorChoice = chooseFunction(scanner, 3, 1);
+        switch (majorChoice) {
+            case 1:
+                this.type = SubjectType.TECH.value;
+                break;
+            case 2:
+                this.type= SubjectType.BUSINESS.value;
+                break;
+            case 3:
+                this.type = SubjectType.LANGUAGE.value;
+                break;
+        }
     }
 
-    public static void setAutoID(int autoID) {
-        Subject.autoID = autoID;
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", numberOfCredits=" + numberOfCredits +
+                ", type='" + type + '\'' +
+                '}';
     }
 
+    public void showInfo() {
+        System.out.printf("%10s\t\t\t%10s\t\t\t%10s\t\t\t%10s\n", this.id, this.name, this.numberOfCredits, this.type);
+    }
+
+
+    public Subject(String name, int numberOfCredits, String type) {
+        id = autoID++;
+        this.name = name;
+        this.numberOfCredits = numberOfCredits;
+        this.type = type;
+    }
+
+
+    //    ===================
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -50,28 +90,5 @@ public class Subject {
     public void setType(String type) {
         this.type = type;
     }
-
-    /// Các môn học sẽ là dữ liệu có sẵn nên ko cần inputInfo phải không?
-
-    @Override
-    public String toString() {
-        return "Subject{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", numberOfCredits=" + numberOfCredits +
-                ", type='" + type + '\'' +
-                '}';
-    }
-
-    public void showInfo() {
-        System.out.printf("%10s\t\t\t%10s\t\t\t%10s\t\t\t%10s\n", this.id, this.name, this.numberOfCredits, this.type);
-    }
-
-
-    public Subject(String name, int numberOfCredits, String type) {
-        id = autoID++;
-        this.name = name;
-        this.numberOfCredits = numberOfCredits;
-        this.type = type;
-    }
 }
+

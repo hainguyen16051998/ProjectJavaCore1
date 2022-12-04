@@ -1,5 +1,6 @@
 package shop.entity;
 
+import account.entity.IHandleGeneral;
 import account.entity.User;
 import shop.constant.RoleConstant;
 
@@ -8,33 +9,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Customer extends User {
+public class Customer extends User implements IHandleGeneral {
     private double balance;
-    private List<Order> orders;
+
 
     public Customer() {
-        this.id= autoID++;
-        this.role="customer";
-        this.orders = new ArrayList<>();
+        super();
+        this.role = "customer";
+
+
     }
 
-    public Customer(String username, String name, String email, String password) {
-        super(username, name, email, password);
-    }
+//    public Customer(String username, String name, String email, String password) {
+//        super(username, name, email, password);
+//    }
 
 
-    @Override
+
     public void inputInfo(Scanner scanner) {
         super.inputInfo(scanner);
         System.out.println("Nhập số dư khả dụng:");
-////////////chua biet ai them so du
+        this.balance = returnDouble(scanner);
+
     }
 
 
-    public void showInfo() {
-        System.out.println("Mã tài khoản: " + this.id + ", Email: " + this.email);
-        System.out.println("Họ tên: " + this.name + ", địa chỉ" + this.address + ", SĐT: " + this.phone + ", Số dư: " + this.balance);
-    }
 
 //    ==========
 
@@ -46,11 +45,5 @@ public class Customer extends User {
         this.balance = balance;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
 }

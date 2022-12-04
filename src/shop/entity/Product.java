@@ -1,12 +1,12 @@
 package shop.entity;
 
-import account.constant.TypeRole;
+import account.entity.IHandleGeneral;
 import shop.constant.TypeStatus;
-import shop.handle.IHandle;
+
 
 import java.util.Scanner;
 
-public class Product implements IHandle {
+public class Product implements IHandleGeneral {
     private static int autoID = 1;
     private int id;
     private String name;
@@ -19,14 +19,14 @@ public class Product implements IHandle {
         this.id = autoID++;
     }
 
-    public Product(String name, String status, int quantity, double price, String description) {
-        this.id = autoID++;
-        this.name = name;
-        this.status = status;
-        this.quantity = quantity;
-        this.price = price;
-        this.description = description;
-    }
+//    public Product(String name, String status, int quantity, double price, String description) {
+//        this.id = autoID++;
+//        this.name = name;
+//        this.status = status;
+//        this.quantity = quantity;
+//        this.price = price;
+//        this.description = description;
+//    }
 
     public String getName() {
         return name;
@@ -103,14 +103,7 @@ public class Product implements IHandle {
 
     // chọn trạng thái cũ hay mới
     public void choseStatus(Scanner scanner) {
-        int statusChoice;
-        while (true) {
-            statusChoice = returnInt(scanner);
-            if (statusChoice == 1 || statusChoice == 2) {
-                break;
-            }
-            System.out.print("Vui lòng chọn lại: ");
-        }
+        int statusChoice = chooseFunction(scanner,2,1);
         if (statusChoice == 1) {
             this.status = TypeStatus.NEW.value;
         } else {

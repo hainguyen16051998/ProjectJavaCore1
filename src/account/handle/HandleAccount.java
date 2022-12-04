@@ -4,7 +4,6 @@ package account.handle;
 import account.entity.User;
 import account.view.Menu;
 import account.view.MenuAdmin;
-import org.omg.CORBA.UShortSeqHelper;
 import shop.entity.Customer;
 import shop.entity.Shop;
 import shop.view.MenuCustomer;
@@ -27,38 +26,6 @@ public class HandleAccount {
 
     }
 
-//
-//    public static void removeAccount(Scanner scanner, List<User> users, User user) {
-//        System.out.println("========== Xóa tài khoản Account =========");
-//        System.out.print("Bạn muốn xóa tài khoản nào: ");
-//        String username = scanner.nextLine();
-//        for (User user1 : users) {
-//            if (user1.getUsername().equals(username)) {
-//                users.remove(user1);
-//            } else {
-//                System.out.print("Tài khoản không tồn tại, nhập lại: ");
-//                removeAccount(scanner, users, user);
-//            }
-//        }
-//    }
-
-    public static void editAccount(Scanner scanner, List<User> users) {
-    }
-
-
-    //    // Kiểm tra trùng SĐT vs hệ thống
-//    private void checkPhone(Scanner scanner) {             // Lỗi so sánh
-//        ArrayList<User> users = new ArrayList<>();
-//        String phone = scanner.nextLine();
-//        for (User user : users) {
-//            if (!user.getPhone().equals(phone)) {
-//                this.phone = phone;
-//                break;
-//            }
-//            System.out.print("SĐT này đã có trong hệ thống, vui lòng nhập SĐT khác ");
-//        }
-////    }
-//    }
 
     /// đăng nhập
     public void login(Scanner scanner, List<User> users) {
@@ -97,10 +64,10 @@ public class HandleAccount {
             menuAdmin.showMenuManager(scanner, users, user);
         } else if (user.getRole().equals("customer")) {
             MenuCustomer menuCustomer = new MenuCustomer(this.shop);
-            menuCustomer.showMenu(scanner, users, user);
+            menuCustomer.showMenu(scanner,users, user);
         } else if (user.getRole().equals("staff")) {
             MenuStaff menuStaff = new MenuStaff(this.shop);
-            menuStaff.showMenu(scanner, users, user);
+            menuStaff.showMenu(scanner,users, user);
         } else if (user.getRole().equals("teacher")) {
 
         } else {
@@ -115,9 +82,9 @@ public class HandleAccount {
         customer.setUsername(inputUsername(scanner, users));
         customer.setEmail(inputEmail(scanner, users));
         customer.setPassword(inputPassword(scanner));
-        customer.setRole("customer");
+        customer.setPhone(inputPhone(scanner,users));
         this.shop.getCustomers().add(customer);
-        users.add((User) customer);
+//        users.add((User) customer);
 
 
     }
@@ -127,24 +94,17 @@ public class HandleAccount {
         System.out.println("============ Quên mật khẩu ================");
         System.out.print("Email: ");
         String email = scanner.nextLine();
-        for (User user1 : users)
-            if (user1.getEmail().equals(email)) {
-                String password = inputPassword(scanner);
-                user1.setPassword(password);
-            } else {
-                System.out.println("Email của tài khoản không đúng");
-            }
+        if (user.getEmail().equals(email)) {
+            String password = inputPassword(scanner);
+            user.setPassword(password);
+        }else {
+            System.out.println("Email của tài khoản không đúng");
+        }
     }
 
 
     //================================================ Thay đổi mật khẩu, email, usernmame==============================
     public void changeUsername(Scanner scanner, List<User> users, User user) {
-        System.out.println("======= Thay đổi username ========");
-        String newName = inputUsername(scanner, users);
-        user.setUsername(newName);
-    }
-
-    public void changeUsernameStaff(Scanner scanner, List<User> users, User user) {
         System.out.println("======= Thay đổi username ========");
         String newName = inputUsername(scanner, users);
         user.setUsername(newName);
@@ -176,26 +136,33 @@ public class HandleAccount {
         }
 
     }
+    public void changePhone(Scanner scanner, List<User> users, User user) {
+        System.out.println("======= Thay đổi SĐT ========");
+        String newSĐT =inputPhone(scanner, users);
+        user.setPhone(newSĐT);
+    }
 
     ///============================================= kiểm tra pass, username, email=======================
 //    kiểm tra mật khẩu
-    public static String inputPassword(Scanner scanner) {
-//        String regex = "^(?=.*[A-Z])(?=.*[\\.;\\,_-])\\S{7,15}$";//// thay lại regxx sau
+
+    public String inputPassword(Scanner scanner) {
+        String regex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$";////
         String newPass;
         System.out.print("Password: ");
         while (true) {
             newPass = scanner.nextLine();
-//            if (!newPass.matches(regex)) {
-//                System.out.println("Mật khẩu dài 7-15 ký tự, chứa ít nhất 1 ký tự in hoa, 1 ký tự đặc biệt (. , - _ ;)! ");
-//                continue;
-//            }
+            if (!newPass.matches(regex)) {
+                System.out.println("Mật khẩu tối thiểu 8 ký tự, gồm chữ cái, số và ký tự đặc biệt: ");
+                continue;
+            }
             break;
         }
         return newPass;
     }
 
+
     /// kiểm tra email
-    public static String inputEmail(Scanner scanner, List<User> users) {
+    public String inputEmail(Scanner scanner, List<User> users) {
         String regex = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$";
         String newMail;
         System.out.print("Email: ");
@@ -220,7 +187,7 @@ public class HandleAccount {
     }
 
     //kiểm tra username
-    public static String inputUsername(Scanner scanner, List<User> users) {
+    public String inputUsername(Scanner scanner, List<User> users) {
         String newName;
         System.out.print("Username: ");
         while (true) {
@@ -238,6 +205,28 @@ public class HandleAccount {
         }
         return newName;
     }
-
-
+///kiểm tra sđt
+    private String inputPhone(Scanner scanner, List<User> users) {
+        String regex = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
+        String newSĐT;
+        System.out.print("SĐT: ");
+        while (true) {
+            newSĐT = scanner.nextLine();
+            if (!newSĐT.matches(regex)) {
+                System.out.print("Không đúng định dạng! Nhập lại: ");
+                continue;
+            }
+            boolean check = true;
+            for (User temp : users) {
+                if (temp.getPhone().equals(newSĐT)) {
+                    check = false;
+                    System.out.print("SĐT đã tồn tại! Nhập lại: ");
+                    break;
+                }
+            }
+            if (check)
+                break;
+        }
+        return newSĐT;
+    }
 }

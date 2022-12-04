@@ -1,20 +1,23 @@
 package school.handle;
 
-import account.entity.IChooseFunction;
+import account.entity.IHandleGeneral;
 import account.entity.User;
 import account.handle.HandleAccount;
 import school.entity.Clazz;
 import school.entity.Student;
 import school.entity.Subject;
-import school.entity.Teacher;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class HandleStudent implements IHandle, IChooseFunction {
+public class HandleStudent implements  IHandleGeneral {
     public void showSubject(List<Subject> subjects) throws NullPointerException {
+        if (subjects==null){
+            System.out.println("Không có dữ liệu");
+            return;
+        }
         System.out.println("\n=====Danh sách các môn học trong trường======");
-        System.out.printf("%10s\t\t\t%10s\t\t\t%10s\t\t\t%10s\n","ID môn học", "Tên môn học", "Số tín chỉ", "Chuyên ngành");
+        System.out.printf("%10s\t\t\t%10s\t\t\t%10s\t\t\t%10s\n","ID", "Tên môn học", "Số tín chỉ", "Chuyên ngành");
         for (Subject s : subjects) {
             s.showInfo();
         }
@@ -25,7 +28,7 @@ public class HandleStudent implements IHandle, IChooseFunction {
         System.out.println("\n=====Danh sách các lớp sinh viên " + student.getName() + " tham gia======");
         for (Clazz c : clazzes) {
             for (Student s : c.getStudents()) {             // tìm từng student trong từng clazz trùng với student đã cho
-                if (s == student) {
+                if (s == student) { ///
                     System.out.println("Lớp " + c.getSubject().getName() + " do giáo viên " + c.getTeacher().getName() + " dạy.");
                 }
             }

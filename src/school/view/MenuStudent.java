@@ -1,6 +1,6 @@
 package school.view;
 
-import account.entity.IChooseFunction;
+import account.entity.IHandleGeneral;
 import account.entity.User;
 import school.entity.Clazz;
 import school.entity.Student;
@@ -10,12 +10,12 @@ import school.handle.HandleStudent;
 import java.util.List;
 import java.util.Scanner;
 
-public class MenuStudent implements IChooseFunction {
+public class MenuStudent implements IHandleGeneral {
     public void showMenu(Scanner scanner, List<User> users, List<Clazz> clazzes, List<Subject> subjects, Student student) {
         HandleStudent handleStudent = new HandleStudent();
 
         while (true) {
-            System.out.println("Xin mời chọn chức năng: ");
+            System.out.println("\n========= Xin mời chọn chức năng ========== ");
             System.out.println("1. Xem thông tin các môn học ");
             System.out.println("2. Xem thông tin giảng viên");
             System.out.println("3. Xem và chỉnh sửa thông tin cá nhân ");
@@ -31,7 +31,8 @@ public class MenuStudent implements IChooseFunction {
                         handleStudent.showTeacher(clazzes,student);
                         break;
                     case 3:
-                        handleStudent.editStudent(scanner, users, student);
+//                        handleStudent.editStudent(scanner, users, student);
+                        student.editInfo(users,student,scanner);
                         break;
                     case 0:
                         return;

@@ -1,18 +1,15 @@
 package account.view;
 
-import account.entity.IChooseFunction;
+import account.entity.IHandleGeneral;
 import account.entity.User;
-import account.handle.HandleAccount;
 import shop.entity.Shop;
-import shop.handle.HandleAdmin;
-import shop.handle.HandleStaff;
 
 import java.util.List;
 import java.util.Scanner;
 
 //import static account.handle.HandleAccount.removeAccount;
 
-public class MenuAdmin implements IChooseFunction {
+public class MenuAdmin implements IHandleGeneral {
     private Shop shop;
     private Menu menu;
     private User user;

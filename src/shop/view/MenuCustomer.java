@@ -1,16 +1,16 @@
 package shop.view;
 
-import account.entity.IChooseFunction;
+import account.entity.IHandleGeneral;
 import account.entity.User;
 import shop.entity.Customer;
 import shop.entity.Shop;
 import shop.handle.HandleCustomer;
+import shop.handle.HandleShop;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 import java.util.Scanner;
 
-public class MenuCustomer implements IChooseFunction {
+public class MenuCustomer extends HandleShop implements IHandleGeneral {
 
     private Shop shop;
 
@@ -22,9 +22,9 @@ public class MenuCustomer implements IChooseFunction {
     /// hiện thị chức năng được chọn
     public void showMenu(Scanner scanner, List<User> users, User user) {
         HandleCustomer handleCustomer = new HandleCustomer();
-        Customer customer = (Customer) user;
+//        Customer customer = (Customer) user;
         while (true) {
-            System.out.println("Xin mời chọn chức năng ");
+            System.out.println("========== Chức năng của bạn ==========");
             System.out.println("1. Xem sản phẩm của shop ");
             System.out.println("2. Đặt hàng ");
             System.out.println("3. Xem thông tin đơn hàng của bạn ");
@@ -38,13 +38,13 @@ public class MenuCustomer implements IChooseFunction {
                         handleCustomer.showProducts(this.shop.getProducts());
                         break;
                     case 2:
-                        handleCustomer.addOrder(scanner, customer, this.shop);
+                        handleCustomer.addOrder(scanner, (Customer) user, this.shop);
                         break;
                     case 3:
-                        handleCustomer.showOrder(customer.getOrders());
+                        handleCustomer.showOrder(this.shop.getOrders(), (Customer) user);
                         break;
                     case 4:
-                        handleCustomer.editCustomer(users, customer, scanner);
+                        user.editInfo(users, user, scanner);
                         break;
                     case 0:
                         return;
