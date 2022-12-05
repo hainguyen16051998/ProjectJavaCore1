@@ -4,10 +4,6 @@ package account.view;
 import account.entity.IHandleGeneral;
 import account.entity.User;
 import account.handle.HandleAccount;
-import school.entity.Clazz;
-import school.entity.Student;
-import school.entity.Subject;
-import school.entity.Teacher;
 import shop.entity.Shop;
 
 import java.util.List;
@@ -27,7 +23,7 @@ public class Menu implements IHandleGeneral {
 
 
 
-    public void mainMenu(Scanner scanner, List<User> users, User user, Clazz clazzes, Subject subjects, Teacher teacher, Student student) {
+    public void mainMenu(Scanner scanner, List<User> users) {
 
        while (true){
            System.out.println("================ FPT =================");
@@ -38,7 +34,7 @@ public class Menu implements IHandleGeneral {
            int ch = chooseFunction(scanner, 2, 0);
            switch (ch) {
                case 1:
-                   handleAccount.login(scanner, users, user, clazzes, subjects, teacher, student);
+                   handleAccount.login(scanner, users);
                    break;
                case 2:
                    handleAccount.registerAcc(scanner, users);
@@ -49,7 +45,7 @@ public class Menu implements IHandleGeneral {
        }
     }
 
-    public void viewLogin(Scanner scanner, List<User> users, User user, Clazz clazzes, Subject subjects, Teacher teacher, Student student) {
+    public void viewLogin(Scanner scanner, List<User> users, User user) {
         System.out.println("============== Đăng nhập ================");
         System.out.println("1. Đăng nhập lại");
         System.out.println("2. Quên mật khẩu");
@@ -57,7 +53,7 @@ public class Menu implements IHandleGeneral {
         int ch = chooseFunction(scanner, 2, 1);
         switch (ch) {
             case 1:
-                handleAccount.login(scanner, users, user, clazzes, subjects, teacher, student);
+                handleAccount.login(scanner, users);
                 break;
             case 2:
                 handleAccount.forgetPassword(scanner, users, user);
