@@ -1,5 +1,6 @@
 package data;
 
+import account.entity.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import school.entity.School;
@@ -25,7 +26,9 @@ public class HandleFile {
         if (o.equals("school")){
             path = "src/data/school.json";
         }
-
+        if (o.equals("admin")){
+            path = "src/data/admin.json";
+        }
         String json = gson.toJson(obj);
 
         FileOutputStream fos = null;
@@ -92,5 +95,26 @@ public class HandleFile {
             }
         }
         return school;
+    }
+    public User readAdmin() {
+        User user = null;
+        FileReader reader = null;
+        try {
+            File file = new File("src/data/admin.json");
+            reader = new FileReader(file);
+            Type type = new TypeToken<User>() {
+            }.getType();
+            user = gson.fromJson(reader, type);
+
+        } catch (Exception e) {
+            System.out.println("Lỗi dữ liệu");
+        } finally {
+            try {
+                reader.close();
+            } catch (Exception e) {
+                System.out.println("Lỗi dữ liệu");
+            }
+        }
+        return user;
     }
 }

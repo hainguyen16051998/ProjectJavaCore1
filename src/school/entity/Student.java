@@ -2,9 +2,6 @@ package school.entity;
 
 import account.entity.IHandleGeneral;
 import account.entity.User;
-import school.constant.RoleConstant;
-
-import java.util.Scanner;
 
 public class Student extends User implements IHandleGeneral {
     private double avgScore;
@@ -19,15 +16,18 @@ public class Student extends User implements IHandleGeneral {
 
     public Student() {
         super();
-        this.role = RoleConstant.STUDENT.value;
+        this.role = "student";
     }
 
 //    @Override
-//    public void inputInfo(Scanner scanner) {
-//        super.inputInfo(scanner);
+//    public void inputInfo(Scanner scanner, List<User>users) {
+//        super.inputInfo(scanner,users);
 ////        System.out.print("Nhập điểm trung bình: ");
 ////        this.avgScore = returnAvg(scanner);
 //    }
+
+
+
 
     public void showInfo() {
         super.showInfo();

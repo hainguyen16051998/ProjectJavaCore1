@@ -10,21 +10,21 @@ import school.entity.Subject;
 import java.util.List;
 import java.util.Scanner;
 
-public class HandleStudent implements  IHandleGeneral {
+public class HandleStudent implements IHandleGeneral {
     public void showSubject(List<Subject> subjects) throws NullPointerException {
-        if (subjects==null){
-            System.out.println("Không có dữ liệu");
-            return;
-        }
         System.out.println("\n=====Danh sách các môn học trong trường======");
-        System.out.printf("%10s\t\t\t%10s\t\t\t%10s\t\t\t%10s\n","ID", "Tên môn học", "Số tín chỉ", "Chuyên ngành");
+        System.out.printf("%10s\t\t\t%10s\t\t\t%10s\t\t\t%10s\n", "ID", "Tên môn học", "Số tín chỉ", "Chuyên ngành");
         for (Subject s : subjects) {
             s.showInfo();
         }
     }
 
 
-    public void showTeacher(List<Clazz> clazzes, Student student) {
+    public void showTeacher(List<Clazz> clazzes, Student student) throws NullPointerException {
+        if (clazzes==null) {
+            System.out.println("Không có dữ liệu");
+            return;
+        }
         System.out.println("\n=====Danh sách các lớp sinh viên " + student.getName() + " tham gia======");
         for (Clazz c : clazzes) {
             for (Student s : c.getStudents()) {             // tìm từng student trong từng clazz trùng với student đã cho
@@ -35,7 +35,7 @@ public class HandleStudent implements  IHandleGeneral {
         }
     }
 
-    public void editStudent(Scanner scanner, List<User> users, Student student) {
+    public void editStudent(Scanner scanner, List<User> users, Student student) throws NullPointerException {
         HandleAccount handleAccount = new HandleAccount();
         student.showInfo();
         System.out.println("\nLựa chọn thay đổi thông tin: ");

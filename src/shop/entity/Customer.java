@@ -2,10 +2,8 @@ package shop.entity;
 
 import account.entity.IHandleGeneral;
 import account.entity.User;
-import shop.constant.RoleConstant;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,8 +24,8 @@ public class Customer extends User implements IHandleGeneral {
 
 
 
-    public void inputInfo(Scanner scanner) {
-        super.inputInfo(scanner);
+    public void inputInfo(Scanner scanner,List<User> users) {
+        super.inputInfo(scanner,users);
         System.out.println("Nhập số dư khả dụng:");
         this.balance = returnDouble(scanner);
 

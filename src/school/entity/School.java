@@ -1,5 +1,6 @@
 package school.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class School {
@@ -7,6 +8,13 @@ public class School {
     private List<Student> students;
     private List<Clazz> clazzes;
     private List<Subject> subjects;
+
+    public School() {
+        this.teachers = new ArrayList<>();
+        this.clazzes = new ArrayList<>();
+        this.students = new ArrayList<>();
+        this.subjects = new ArrayList<>();
+    }
 
     public List<Teacher> getTeachers() {
         return teachers;

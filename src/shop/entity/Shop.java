@@ -34,6 +34,7 @@ public class Shop {
         this.staffs = staffs;
     }
 
+    // tại sao xem nv bán hàng lại getCustomẻ- vừa sửa lại bị nhầm thầy :)) lát e đổi lại, mà nó ko gọi đk dữ liêu tới, ko hiểu
     public List<Customer> getCustomers() {
         return customers;
     }

@@ -4,6 +4,11 @@ package account.handle;
 import account.entity.User;
 import account.view.Menu;
 import account.view.MenuAdmin;
+import school.entity.School;
+import school.entity.Student;
+import school.entity.Teacher;
+import school.view.MenuStudent;
+import school.view.MenuTeacher;
 import shop.entity.Customer;
 import shop.entity.Shop;
 import shop.view.MenuCustomer;
@@ -16,10 +21,12 @@ import java.util.Scanner;
 public class HandleAccount {
     private Menu menu;
     private Shop shop;
+    private School school;
 
-    public HandleAccount(Menu menu, Shop shop) {
+    public HandleAccount(Menu menu, Shop shop, School school) {
         this.menu = menu;
         this.shop = shop;
+        this.school = school;
     }
 
     public HandleAccount() {
@@ -60,18 +67,20 @@ public class HandleAccount {
     /// check role
     public void checkRole(Scanner scanner, List<User> users, User user) {
         if (user.getRole().equals("admin")) {
-            MenuAdmin menuAdmin = new MenuAdmin(this.shop);
+            MenuAdmin menuAdmin = new MenuAdmin(this.shop,this.school);
             menuAdmin.showMenuManager(scanner, users, user);
         } else if (user.getRole().equals("customer")) {
             MenuCustomer menuCustomer = new MenuCustomer(this.shop);
-            menuCustomer.showMenu(scanner,users, user);
+            menuCustomer.showMenu(scanner, users, user);
         } else if (user.getRole().equals("staff")) {
             MenuStaff menuStaff = new MenuStaff(this.shop);
-            menuStaff.showMenu(scanner,users, user);
+            menuStaff.showMenu(scanner, users, user);
         } else if (user.getRole().equals("teacher")) {
-
+            MenuTeacher menuTeacher = new MenuTeacher(this.school);
+            menuTeacher.showMenu(scanner,users, (Teacher) user);
         } else {
-
+            MenuStudent menuStudent = new MenuStudent(this.school);
+            menuStudent.showMenu(scanner,users, (Student) user);
         }
     }
 
@@ -82,7 +91,7 @@ public class HandleAccount {
         customer.setUsername(inputUsername(scanner, users));
         customer.setEmail(inputEmail(scanner, users));
         customer.setPassword(inputPassword(scanner));
-        customer.setPhone(inputPhone(scanner,users));
+        customer.setPhone(inputPhone(scanner, users));
         this.shop.getCustomers().add(customer);
 //        users.add((User) customer);
 
@@ -97,7 +106,7 @@ public class HandleAccount {
         if (user.getEmail().equals(email)) {
             String password = inputPassword(scanner);
             user.setPassword(password);
-        }else {
+        } else {
             System.out.println("Email của tài khoản không đúng");
         }
     }
@@ -136,9 +145,10 @@ public class HandleAccount {
         }
 
     }
+
     public void changePhone(Scanner scanner, List<User> users, User user) {
         System.out.println("======= Thay đổi SĐT ========");
-        String newSĐT =inputPhone(scanner, users);
+        String newSĐT = inputPhone(scanner, users);
         user.setPhone(newSĐT);
     }
 
@@ -205,8 +215,9 @@ public class HandleAccount {
         }
         return newName;
     }
-///kiểm tra sđt
-    private String inputPhone(Scanner scanner, List<User> users) {
+
+    ///kiểm tra sđt
+    public String inputPhone(Scanner scanner, List<User> users) {
         String regex = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
         String newSĐT;
         System.out.print("SĐT: ");
@@ -218,11 +229,13 @@ public class HandleAccount {
             }
             boolean check = true;
             for (User temp : users) {
-                if (temp.getPhone().equals(newSĐT)) {
-                    check = false;
-                    System.out.print("SĐT đã tồn tại! Nhập lại: ");
-                    break;
-                }
+               if (temp.getPhone()!=null){
+                   if (temp.getPhone().equals(newSĐT)) {
+                       check = false;
+                       System.out.print("SĐT đã tồn tại! Nhập lại: ");
+                       break;
+                   }
+               }
             }
             if (check)
                 break;

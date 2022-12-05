@@ -3,6 +3,7 @@ package school.view;
 import account.entity.IHandleGeneral;
 import account.entity.User;
 import school.entity.Clazz;
+import school.entity.School;
 import school.entity.Student;
 import school.entity.Subject;
 import school.handle.HandleStudent;
@@ -11,7 +12,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuStudent implements IHandleGeneral {
-    public void showMenu(Scanner scanner, List<User> users, List<Clazz> clazzes, List<Subject> subjects, Student student) {
+    private School school;
+
+    public MenuStudent(School school) {
+        this.school = school;
+    }
+
+    public void showMenu(Scanner scanner, List<User> users, Student student) {
         HandleStudent handleStudent = new HandleStudent();
 
         while (true) {
@@ -25,10 +32,10 @@ public class MenuStudent implements IHandleGeneral {
             try {
                 switch (choice) {
                     case 1:
-                        handleStudent.showSubject(subjects);
+                        handleStudent.showSubject(this.school.getSubjects());
                         break;
                     case 2:
-                        handleStudent.showTeacher(clazzes,student);
+                        handleStudent.showTeacher(this.school.getClazzes(),student);
                         break;
                     case 3:
 //                        handleStudent.editStudent(scanner, users, student);

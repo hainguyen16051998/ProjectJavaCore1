@@ -13,6 +13,10 @@ import java.util.Scanner;
 
 public class HandleTeacher implements IHandleGeneral {
     public void showSubject(List<Clazz> clazzes, Teacher teacher) throws NullPointerException {
+        if (clazzes==null) {
+            System.out.println("Không có dữ liệu");
+            return;
+        }
         System.out.println("\n===== Danh sách các môn học giảng viên dạy ======");
         System.out.printf("%10s\t\t\t%10s", "Lớp", "Môn học");
         for (Clazz c : clazzes) {
@@ -23,6 +27,10 @@ public class HandleTeacher implements IHandleGeneral {
     }
 
     public void showStudent(List<Clazz> clazzes, Teacher teacher) throws NullPointerException {
+        if (clazzes==null) {
+            System.out.println("Không có dữ liệu");
+            return;
+        }
         System.out.println("\n=====Danh sách học sinh trong lớp thầy giáo " + teacher.getName() + " đảm nhận======");
         for (Clazz c : clazzes) {
             if (c.getTeacher() == teacher) {    //vòng lặp đi tìm lớp mình dạy
@@ -37,8 +45,12 @@ public class HandleTeacher implements IHandleGeneral {
     }
 
     public void updateAvgScore(Scanner scanner, List<Clazz> clazzes, Teacher teacher) throws NullPointerException {
+        if (clazzes == null) {
+            System.out.println("Không có dữ liệu");
+            return;
+        }
         System.out.println("\n=====Cập nhật điểm học sinh======");
-        System.out.print("Chọn mã lớp cần cập nhật điểm: ");
+        System.out.print("Chọn mã lớp: ");
         String id = scanner.nextLine();
         while (true) {
             boolean check = false;
@@ -57,7 +69,7 @@ public class HandleTeacher implements IHandleGeneral {
         }
     }
 
-    private void editScore(Scanner scanner, Clazz clazz) {
+    private void editScore(Scanner scanner, Clazz clazz) throws NullPointerException{
         while (true) {
             System.out.println("1. Sửa điểm");
             System.out.println("2. Kết thúc cập nhật");
@@ -94,7 +106,7 @@ public class HandleTeacher implements IHandleGeneral {
     }
 
 
-    public void editTeacher(Scanner scanner, List<User> users, Teacher teacher) {
+    public void editTeacher(Scanner scanner, List<User> users, Teacher teacher) throws NullPointerException{
         HandleAccount handleAccount = new HandleAccount();
         teacher.showInfo();
         System.out.println("\nLựa chọn thay đổi thông tin: ");

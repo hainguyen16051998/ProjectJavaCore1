@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Menu implements IHandleGeneral {
     private HandleAccount handleAccount;
-    private Shop shop;
+
 
     public HandleAccount getHandleAccount() {
         return handleAccount;
@@ -21,9 +21,7 @@ public class Menu implements IHandleGeneral {
         this.handleAccount = handleAccount;
     }
 
-    public void setShop(Shop shop) {
-        this.shop = shop;
-    }
+
 
     public void mainMenu(Scanner scanner, List<User> users) {
 

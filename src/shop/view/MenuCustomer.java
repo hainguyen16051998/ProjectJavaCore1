@@ -22,7 +22,6 @@ public class MenuCustomer extends HandleShop implements IHandleGeneral {
     /// hiện thị chức năng được chọn
     public void showMenu(Scanner scanner, List<User> users, User user) {
         HandleCustomer handleCustomer = new HandleCustomer();
-//        Customer customer = (Customer) user;
         while (true) {
             System.out.println("========== Chức năng của bạn ==========");
             System.out.println("1. Xem sản phẩm của shop ");
@@ -31,7 +30,7 @@ public class MenuCustomer extends HandleShop implements IHandleGeneral {
             System.out.println("4. Xem và chỉnh sửa thông tin cá nhân ");
             System.out.println("0. Đăng xuất ");
             System.out.print("Chọn chức năng: ");
-            int choice = chooseFunction(scanner, 4,0);
+            int choice = chooseFunction(scanner, 4, 0);
             try {
                 switch (choice) {
                     case 1:

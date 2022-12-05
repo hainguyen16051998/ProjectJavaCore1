@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import data.HandleFile;
+import school.entity.School;
 import shop.entity.*;
 
 import java.io.*;
@@ -16,53 +17,31 @@ import java.util.Scanner;
 public class MainRun {
     public static void main(String[] args) {
         Shop shop = new Shop();
+        School school = new School();
         Scanner scanner = new Scanner(System.in);
         List<User> users = new ArrayList<>();
-        User user1 = new User("hai", "Hải Dương", "hai123@gmail.com", "123");
-        user1.setRole("admin");
-//
-//        Customer user2 = new Customer("customer", "Customer", "customer@gmail.com", "123");
-//        shop.getCustomers().add(user2);
-//
-//        Staff user3 = new Staff("staff", "Staff", "staff@gmail.com", "123");
-//        shop.getStaffs().add(user3);
-//        user2.setBalance(1000);
-//
-//        Product product = new Product("iphone", "Cũ", 12, 135, "điệm thoại");
-//        Product product1 = new Product("tv", "Cũ", 12, 105, "tv thoại");
-//        shop.getProducts().add(product);
-//        shop.getProducts().add(product1);
-//
-//
-//        Gson gson = new Gson();
-//        String json = gson.toJson(shop);
-//        System.out.println(json);
 
 
         HandleFile handleFile = new HandleFile();
-//        handleFile.saveFile(shop,"shop");
-
-
+        school = handleFile.readSchool();
         shop = handleFile.readShop();
-//        Order order = new Order(shop.getCustomers().get(0));
-//        order.inputInfo(scanner, shop.getProducts());
-//        shop.getOrders().add(order);
-//        shop.getCustomers().get(0).getOrders().add(order);
+        User admin = handleFile.readAdmin();
 
-        users.add(user1);
+        users.add(admin);
         users.addAll(shop.getCustomers());
         users.addAll(shop.getStaffs());
-//
-        System.out.println(users.toString());
+        users.addAll(school.getStudents());
+        users.addAll(school.getTeachers());
+//        System.out.println(users);
+
         Menu menu = new Menu();
-        HandleAccount handleAccount = new HandleAccount(menu, shop);
+        HandleAccount handleAccount = new HandleAccount(menu, shop, school);
         menu.setHandleAccount(handleAccount);
-        menu.setShop(shop);
-
-
         menu.mainMenu(scanner, users);
-        System.out.println(1);
+
         handleFile.saveFile(shop, "shop");
+        handleFile.saveFile(school, "school");
+        handleFile.saveFile(admin, "admin");
 
     }
 }

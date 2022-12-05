@@ -3,6 +3,7 @@ package school.entity;
 import account.entity.IHandleGeneral;
 import school.constant.SubjectType;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Subject implements IHandleGeneral {
@@ -18,12 +19,21 @@ public class Subject implements IHandleGeneral {
 
 
     /// Các môn học sẽ là dữ liệu có sẵn nên ko cần inputInfo phải không?
-    public void inputInfo(Scanner scanner) {
+    public void inputInfo(Scanner scanner, List<Subject> subjects) {
         System.out.print("Tên môn học: ");
-        this.name = scanner.nextLine();
+        String name = scanner.nextLine();
+        if (subjects!=null){
+            for (Subject s : subjects) {
+                if (s.getName().equals(name)){
+                    System.out.println("Môn học đã tồn tại!");
+                    return;
+                }
+            }
+        }
+        this.name=name;
         System.out.print("Số tín chỉ (<4): ");
         this.numberOfCredits = chooseFunction(scanner, 3, 1);
-        System.out.print("Chọn chuyên ngành: \n\t1.Tech \n\t2.Bussiness \n\t3.Language ");
+        System.out.println("Chọn chuyên ngành: \n\t1.Tech \n\t2.Bussiness \n\t3.Language ");
         System.out.print("Chọn: ");
         int majorChoice = chooseFunction(scanner, 3, 1);
         switch (majorChoice) {
@@ -31,7 +41,7 @@ public class Subject implements IHandleGeneral {
                 this.type = SubjectType.TECH.value;
                 break;
             case 2:
-                this.type= SubjectType.BUSINESS.value;
+                this.type = SubjectType.BUSINESS.value;
                 break;
             case 3:
                 this.type = SubjectType.LANGUAGE.value;
