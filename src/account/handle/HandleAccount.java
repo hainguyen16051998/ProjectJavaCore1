@@ -4,12 +4,17 @@ package account.handle;
 import account.entity.User;
 import account.view.Menu;
 import account.view.MenuAdmin;
+import school.entity.Clazz;
+import school.entity.Student;
+import school.entity.Subject;
+import school.entity.Teacher;
+import school.view.MenuStudent;
+import school.view.MenuTeacher;
 import shop.entity.Customer;
 import shop.entity.Shop;
 import shop.view.MenuCustomer;
 import shop.view.MenuStaff;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,7 +33,7 @@ public class HandleAccount {
 
 
     /// đăng nhập
-    public void login(Scanner scanner, List<User> users) {
+    public void login(Scanner scanner, List<User> users, User user, Clazz clazzes, Subject subjects, Teacher teacher, Student student) {
         System.out.println("============ Đăng nhập ===============");
         while (true) {
             System.out.print("Username: ");
@@ -36,17 +41,17 @@ public class HandleAccount {
             System.out.print("Password: ");
             String password = scanner.nextLine();
             boolean check = false;
-            for (User user : users) {
-                if (user.getUsername().equals(name)) {
+            for (User user1 : users) {
+                if (user1.getUsername().equals(name)) {
                     // nhập đúng username
                     check = true;
-                    if (user.getPassword().equals(password)) {
+                    if (user1.getPassword().equals(password)) {
                         //nhập đúng cả password
                         // check role
-                        checkRole(scanner, users, user);
+                        checkRole(scanner, users, user, clazzes, subjects, teacher, student);
                     } else {
                         //sai pass
-                        menu.viewLogin(scanner, users, user);
+                        menu.viewLogin(scanner, users, user, clazzes, subjects, teacher, student);
                     }
                 }
             }
@@ -58,20 +63,22 @@ public class HandleAccount {
     }
 
     /// check role
-    public void checkRole(Scanner scanner, List<User> users, User user) {
+    public void checkRole(Scanner scanner, List<User> users, User user, Clazz clazzes, Subject subjects, Teacher teacher, Student student) {
         if (user.getRole().equals("admin")) {
             MenuAdmin menuAdmin = new MenuAdmin(this.shop);
-            menuAdmin.showMenuManager(scanner, users, user);
+            menuAdmin.showMenu(scanner, users, user, subjects, clazzes, teacher, student);
         } else if (user.getRole().equals("customer")) {
             MenuCustomer menuCustomer = new MenuCustomer(this.shop);
-            menuCustomer.showMenu(scanner,users, user);
+            menuCustomer.showMenu(scanner, users, user);
         } else if (user.getRole().equals("staff")) {
             MenuStaff menuStaff = new MenuStaff(this.shop);
-            menuStaff.showMenu(scanner,users, user);
+            menuStaff.showMenu(scanner, users, user);
         } else if (user.getRole().equals("teacher")) {
-
-        } else {
-
+            MenuTeacher menuTeacher = new MenuTeacher();
+            menuTeacher.showMenu(scanner, users, clazzes, subjects, teacher);
+        } else if (user.getRole().equals("student")) {
+            MenuStudent menuStudent = new MenuStudent();
+            menuStudent.showMenu(scanner, users, clazzes, subjects, student);
         }
     }
 
@@ -82,7 +89,7 @@ public class HandleAccount {
         customer.setUsername(inputUsername(scanner, users));
         customer.setEmail(inputEmail(scanner, users));
         customer.setPassword(inputPassword(scanner));
-        customer.setPhone(inputPhone(scanner,users));
+        customer.setPhone(inputPhone(scanner, users));
         this.shop.getCustomers().add(customer);
 //        users.add((User) customer);
 
@@ -97,7 +104,7 @@ public class HandleAccount {
         if (user.getEmail().equals(email)) {
             String password = inputPassword(scanner);
             user.setPassword(password);
-        }else {
+        } else {
             System.out.println("Email của tài khoản không đúng");
         }
     }
@@ -136,9 +143,10 @@ public class HandleAccount {
         }
 
     }
+
     public void changePhone(Scanner scanner, List<User> users, User user) {
         System.out.println("======= Thay đổi SĐT ========");
-        String newSĐT =inputPhone(scanner, users);
+        String newSĐT = inputPhone(scanner, users);
         user.setPhone(newSĐT);
     }
 
@@ -146,6 +154,7 @@ public class HandleAccount {
 //    kiểm tra mật khẩu
 
     public String inputPassword(Scanner scanner) {
+
         String regex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$";////
         String newPass;
         System.out.print("Password: ");
@@ -205,8 +214,10 @@ public class HandleAccount {
         }
         return newName;
     }
-///kiểm tra sđt
+
+    ///kiểm tra sđt
     private String inputPhone(Scanner scanner, List<User> users) {
+
         String regex = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
         String newSĐT;
         System.out.print("SĐT: ");

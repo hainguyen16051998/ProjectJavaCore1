@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuTeacher implements IHandleGeneral {
-    public void showMenu(Scanner scanner, List<User> users, List<Subject> subjects, List<Clazz> clazzes, Teacher teacher) {
+    public void showMenu(Scanner scanner, List<User> users, List<Clazz> clazzes, List<Subject> subjects, Teacher teacher) {
         HandleTeacher handleTeacher = new HandleTeacher();
 
         while (true) {
@@ -26,7 +26,7 @@ public class MenuTeacher implements IHandleGeneral {
             try {
                 switch (choice) {
                     case 1:
-                        handleTeacher.showSubject(clazzes,teacher);               // teacher và student đều có cái này, có nên gộp chung ko?
+                        handleTeacher.showSubject(clazzes, teacher);               // teacher và student đều có cái này, có nên gộp chung ko?
                         break;
                     case 2:
                         handleTeacher.showStudent(clazzes, teacher);
@@ -36,7 +36,7 @@ public class MenuTeacher implements IHandleGeneral {
                         break;
                     case 4:
 //                        handleTeacher.editTeacher(scanner, users, teacher);
-                        teacher.editInfo(users,teacher,scanner);
+                        teacher.editInfo(users, teacher, scanner);
                         break;
                     case 0:
                         return;

@@ -1,17 +1,20 @@
 import account.entity.User;
 import account.handle.HandleAccount;
 import account.view.Menu;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import school.entity.Clazz;
+import school.entity.Student;
+import school.entity.Subject;
+import school.entity.Teacher;
+import shop.entity.Shop;
 
-import data.HandleFile;
-import shop.entity.*;
-
-import java.io.*;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+//import com.google.gson.Gson;
+//import com.google.gson.reflect.TypeToken;
+//
+//import data.HandleFile;
 
 public class MainRun {
     public static void main(String[] args) {
@@ -39,11 +42,11 @@ public class MainRun {
 //        System.out.println(json);
 
 
-        HandleFile handleFile = new HandleFile();
-//        handleFile.saveFile(shop,"shop");
-
-
-        shop = handleFile.readShop();
+//        HandleFile handleFile = new HandleFile();
+////        handleFile.saveFile(shop,"shop");
+//
+//
+//        shop = handleFile.readShop();
 //        Order order = new Order(shop.getCustomers().get(0));
 //        order.inputInfo(scanner, shop.getProducts());
 //        shop.getOrders().add(order);
@@ -59,10 +62,14 @@ public class MainRun {
         menu.setHandleAccount(handleAccount);
         menu.setShop(shop);
 
-
-        menu.mainMenu(scanner, users);
+        User user = new User();
+        Clazz clazzes = new Clazz();
+        Subject subjects = new Subject();
+        Teacher teacher = new Teacher();
+        Student student = new Student();
+        menu.mainMenu(scanner, users, user, clazzes, subjects, teacher, student);
         System.out.println(1);
-        handleFile.saveFile(shop, "shop");
+//        handleFile.saveFile(shop, "shop");
 
     }
 }
