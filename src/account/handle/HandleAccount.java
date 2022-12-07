@@ -80,7 +80,7 @@ public class HandleAccount {
         } else if (user.getRole().equals("teacher")) {
             MenuTeacher menuTeacher = new MenuTeacher(this.school);
             menuTeacher.showMenu(scanner,users, (Teacher) user);
-        } else {
+        } else if (user.getRole().equals("student")) {
             MenuStudent menuStudent = new MenuStudent(this.school);
             menuStudent.showMenu(scanner,users, (Student) user);
         }
@@ -96,8 +96,6 @@ public class HandleAccount {
         customer.setPhone(inputPhone(scanner, users));
         this.shop.getCustomers().add(customer);
         users.add(customer);
-
-
     }
 
     // =======================quên mật khẩu=============
