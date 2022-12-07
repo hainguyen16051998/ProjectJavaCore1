@@ -51,9 +51,11 @@ public class HandleAccount {
                         //nhập đúng cả password
                         // check role
                         checkRole(scanner, users, user);
+                        break;
                     } else {
                         //sai pass
                         menu.viewLogin(scanner, users, user);
+                        break;
                     }
                 }
             }
@@ -93,7 +95,7 @@ public class HandleAccount {
         customer.setPassword(inputPassword(scanner));
         customer.setPhone(inputPhone(scanner, users));
         this.shop.getCustomers().add(customer);
-//        users.add((User) customer);
+        users.add(customer);
 
 
     }

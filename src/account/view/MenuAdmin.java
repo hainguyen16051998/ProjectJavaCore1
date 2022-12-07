@@ -84,11 +84,13 @@ public class MenuAdmin implements IHandleGeneral {
                         Teacher teacher = new Teacher();
                         teacher.inputInfo(scanner, users);
                         this.school.getTeachers().add(teacher);
+                        users.add(teacher);
                         break;
                     case 4:
                         Student student = new Student();
                         student.inputInfo(scanner, users);
                         this.school.getStudents().add(student);
+                        users.add(student);
                         break;
                     case 5:
                         handleAdmin.editUser(scanner, this.school.getTeachers(), users);
@@ -152,6 +154,7 @@ public class MenuAdmin implements IHandleGeneral {
                         Staff staff = new Staff();
                         staff.inputInfo(scanner, users);
                         this.shop.getStaffs().add(staff);
+                        users.add(staff);
                         break;
                     case 4:
                         handleAdmin.editUser(scanner, this.shop.getStaffs(), users);

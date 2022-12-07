@@ -1,1 +1,102 @@
-{"products":[{"id":1,"name":"Iphone 14 Promax","status":"Mới","quantity":6,"price":135.0,"description":"Điện thoại Apple"},{"id":2,"name":"Samsung Galaxy S22 Ultra","status":"Mới","quantity":11,"price":105.0,"description":"Điện thoại Samsung"}],"staffs":[{"balance":10000.0,"id":2,"username":"staff","name":"Staff","email":"staff@gmail.com","password":"123","role":"staff"},{"balance":15.0,"id":9,"username":"staff1","name":"linh","email":"linh@gmail.com","address":"hn","phone":"0985457135","password":"Admin@123","role":"staff"}],"customers":[{"balance":9730.0,"id":3,"username":"customer","name":"Customer","email":"customer@gmail.com","password":"123","role":"customer"},{"balance":0.0,"id":6,"username":"tuan","email":"tuan@gmail.com","password":"123","role":"customer"}],"orders":[{"id":1,"orderTime":{"date":{"year":2022,"month":12,"day":5},"time":{"hour":1,"minute":49,"second":57,"nano":259000000}},"status":"Chờ xác nhận","total":270.0,"products":{"1":2},"customer":{"balance":9730.0,"id":3,"username":"customer","name":"Customer","email":"customer@gmail.com","password":"123","role":"customer"}}]}
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Iphone 14 Promax",
+      "status": "Mới",
+      "quantity": 6,
+      "price": 135.0,
+      "description": "Điện thoại Apple"
+    },
+    {
+      "id": 2,
+      "name": "Samsung Galaxy S22 Ultra",
+      "status": "Mới",
+      "quantity": 11,
+      "price": 105.0,
+      "description": "Điện thoại Samsung"
+    }
+  ],
+  "staffs": [
+    {
+      "balance": 10000.0,
+      "id": 2,
+      "username": "staff",
+      "name": "Staff",
+      "email": "staff@gmail.com",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "balance": 15.0,
+      "id": 9,
+      "username": "staff1",
+      "name": "linh",
+      "email": "linh@gmail.com",
+      "address": "hn",
+      "phone": "0985457135",
+      "password": "Admin@123",
+      "role": "staff"
+    }
+  ],
+  "customers": [
+    {
+      "balance": 9730.0,
+      "id": 3,
+      "username": "customer",
+      "name": "Customer",
+      "email": "customer@gmail.com",
+      "password": "123",
+      "role": "customer"
+    },
+    {
+      "balance": 0.0,
+      "id": 6,
+      "username": "tuan",
+      "email": "tuan@gmail.com",
+      "password": "123",
+      "role": "customer"
+    },
+    {
+      "balance": 0.0,
+      "id": 11,
+      "username": "cus",
+      "email": "cus@gmail.com",
+      "phone": "0985457128",
+      "password": "Admin@123",
+      "role": "customer"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "orderTime": {
+        "date": {
+          "year": 2022,
+          "month": 12,
+          "day": 5
+        },
+        "time": {
+          "hour": 1,
+          "minute": 49,
+          "second": 57,
+          "nano": 259000000
+        }
+      },
+      "status": "Chờ xác nhận",
+      "total": 270.0,
+      "products": {
+        "1": 2
+      },
+      "customer": {
+        "balance": 9730.0,
+        "id": 3,
+        "username": "customer",
+        "name": "Customer",
+        "email": "customer@gmail.com",
+        "password": "123",
+        "role": "customer"
+      }
+    }
+  ]
+}
